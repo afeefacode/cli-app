@@ -27,11 +27,25 @@ class Application extends SymfonyApplication
         if ($name) {
             $this->printCliHeader($infos);
         }
+
+        if ($commandDefinitions && $commandDefinitions->abortMessage) {
+            $this->abortCli($commandDefinitions->abortMessage);
+        }
     }
 
     public function cloneForCommandGroup(): Application
     {
         return new Application();
+    }
+
+    public function abortCli($message)
+    {
+        $colors = new \Wujunze\Colors();
+        echo "\n";
+        echo $colors->getColoredString(' Abort: ' . $message, 'red');
+        echo "\n";
+        echo "\n";
+        exit;
     }
 
     /**

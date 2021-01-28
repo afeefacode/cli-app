@@ -9,11 +9,17 @@ class CommandDefinition
     public $description;
     public $mode;
     public $subCommands = [];
+    public $abortMessage = null;
 
     public function add(string $name, $Command, string $description = null): CommandDefinition
     {
         $this->addDefinition($name, $Command, $description);
         return $this;
+    }
+
+    public function abort(string $message): void
+    {
+        $this->abortMessage = $message;
     }
 
     public function addAndGet(string $name, $Command, string $description = null): CommandDefinition
