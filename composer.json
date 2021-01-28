@@ -1,0 +1,31 @@
+{
+    "name": "afeefacode/cli-app",
+    "type": "library",
+    "description": "Convenient wrapper around symfony console",
+    "license": "MIT",
+    "homepage": "https://github.com/afeefacode/cli-app",
+    "authors": [
+        {
+            "name": "Afeefa Kollektiv",
+            "email": "kollektiv@afeefa.de"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "symfony/console": "^v5.2",
+        "symfony/process": "^v5.2",
+        "twig/twig": "^v3.2",
+        "wujunze/php-cli-color": "^v2.4",
+        "webmozart/path-util": "^2.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Afeefa\\Component\\Cli\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Example\\": "example"
+        }
+    }
+  }
