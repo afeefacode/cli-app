@@ -5,7 +5,7 @@ namespace Afeefa\Component\Cli;
 trait HasDefinitionsTrait
 {
     protected $commandDefinitions = [];
-    protected $noCommandsMessage = null;
+    protected $noCommandsMessage;
 
     public function command(string $name, $Command, string $description): HasDefinitionsInterface
     {

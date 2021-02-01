@@ -3,7 +3,9 @@
 namespace Afeefa\Component\Cli;
 
 use Symfony\Component\Console\Application as SymfonyApplication;
+use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Output\OutputInterface;
 use Wujunze\Colors;
 
@@ -15,6 +17,7 @@ class Application extends SymfonyApplication implements HasDefinitionsInterface
         HasDefinitionsTrait::noCommandAvailable as definitionsNoCommandsAvailable;
     }
 
+    protected $BeforeCommand;
     protected $infos = [];
 
     public function run(InputInterface $input = null, OutputInterface $output = null)
@@ -34,7 +37,20 @@ class Application extends SymfonyApplication implements HasDefinitionsInterface
             $this->printCliHeader();
         }
 
+        if ($this->BeforeCommand) {
+            $command = new $this->BeforeCommand($this);
+            $input = new ArgvInput();
+            $output = new ConsoleOutput();
+            $command->run($input, $output);
+        }
+
         return parent::run($input, $output);
+    }
+
+    public function runBefore(string $Command): Application
+    {
+        $this->BeforeCommand = $Command;
+        return $this;
     }
 
     /**

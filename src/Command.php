@@ -120,14 +120,16 @@ class Command extends SymfonyCommand
 
     protected function printCommandStart($info)
     {
-        $this->io->title($info);
+        if ($info) {
+            $this->io->title($info);
 
-        if (!self::$cliBenchmark) {
-            self::$cliBenchmark = BenchmarkUtil::startBenchmark();
+            if (!self::$cliBenchmark) {
+                self::$cliBenchmark = BenchmarkUtil::startBenchmark();
+            }
+            $this->commandBenchmark = BenchmarkUtil::startBenchmark();
+
+            $this->taskInfo = $info;
         }
-        $this->commandBenchmark = BenchmarkUtil::startBenchmark();
-
-        $this->taskInfo = $info;
     }
 
     protected function printCommandFinish()
