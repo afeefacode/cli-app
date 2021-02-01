@@ -14,12 +14,14 @@
     "require": {
         "php": ">=7.4",
         "afeefa/debug-dump-log": "^0",
-        "afeefa/package-manager": "^0",
         "symfony/console": "^v5.2",
         "symfony/process": "^v5.2",
         "twig/twig": "^v3.2",
         "webmozart/path-util": "^2.3",
         "wujunze/php-cli-color": "^v2.4"
+    },
+    "require-dev": {
+        "afeefa/package-manager": "^0.0.6"
     },
     "autoload": {
         "psr-4": {
