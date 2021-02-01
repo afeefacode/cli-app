@@ -1,5 +1,5 @@
 {
-    "name": "afeefacode/cli-app",
+    "name": "afeefa/cli-app",
     "version": "0.0.5",
     "type": "library",
     "description": "Convenient wrapper around symfony console",
@@ -14,7 +14,7 @@
     "require": {
         "php": ">=7.4",
         "afeefa/debug-dump-log": "^0",
-        "afeefacode/package-manager": "^0",
+        "afeefa/package-manager": "^0",
         "symfony/console": "^v5.2",
         "symfony/process": "^v5.2",
         "twig/twig": "^v3.2",
