@@ -3,49 +3,68 @@
 namespace Afeefa\Component\Cli;
 
 use Symfony\Component\Console\Application as SymfonyApplication;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+use Wujunze\Colors;
 
-class Application extends SymfonyApplication
+class Application extends SymfonyApplication implements HasDefinitionsInterface
 {
-    public function __construct(string $name = '', array $infos = [], CommandDefinition $commandDefinitions = null)
-    {
-        parent::__construct($name);
-
-        if ($commandDefinitions) {
-            $commands = $this->definitionsToCommands(null, $commandDefinitions);
-
-            // $this->dumpCommands($commands);
-
-            foreach ($commands as $command) {
-                $this->add($command);
-            }
-
-            $defaultCommand = $commands[0];
-            $this->add($defaultCommand);
-            $this->setDefaultCommand($defaultCommand->getName());
-        }
-
-        if ($name) {
-            $this->printCliHeader($infos);
-        }
-
-        if ($commandDefinitions && $commandDefinitions->abortMessage) {
-            $this->abortCli($commandDefinitions->abortMessage);
-        }
+    use HasDefinitionsTrait {
+        HasDefinitionsTrait::command as definitionsCommand;
+        HasDefinitionsTrait::group as definitionsGroup;
+        HasDefinitionsTrait::noCommandAvailable as definitionsNoCommandsAvailable;
     }
 
-    public function cloneForCommandGroup(): Application
+    protected $infos = [];
+
+    public function run(InputInterface $input = null, OutputInterface $output = null)
     {
-        return new Application();
+        $commands = $this->definitionsToCommands($this);
+
+        $indexCommand = new CommandGroup($this, 'index', $this->noCommandsMessage);
+        $indexCommand->setDescription('Select a command');
+        $this->add($indexCommand);
+        $this->setDefaultCommand($indexCommand->getName());
+
+        foreach ($commands as $command) {
+            $this->add($command);
+        }
+
+        if ($this->getName()) {
+            $this->printCliHeader();
+        }
+
+        return parent::run($input, $output);
     }
 
-    public function abortCli($message)
+    /**
+     * Just cast to Application to be usable in fluent interface
+     */
+    public function command(string $name, $Command, string $description): Application
     {
-        $colors = new \Wujunze\Colors();
-        echo "\n";
-        echo $colors->getColoredString(' Abort: ' . $message, 'red');
-        echo "\n";
-        echo "\n";
-        exit;
+        return $this->definitionsCommand($name, $Command, $description);
+    }
+
+    /**
+     * Just cast to Application to be usable in fluent interface
+     */
+    public function group(string $name, string $description, callable $callback): Application
+    {
+        return $this->definitionsGroup($name, $description, $callback);
+    }
+
+    /**
+     * Just cast to Application to be usable in fluent interface
+     */
+    public function noCommandAvailable(string $message): Application
+    {
+        return $this->definitionsNoCommandsAvailable($message);
+    }
+
+    public function infos(array $infos)
+    {
+        $this->infos = $infos;
+        return $this;
     }
 
     /**
@@ -56,47 +75,25 @@ class Application extends SymfonyApplication
         return '';
     }
 
-    private function dumpCommands(array $commands): void
+    public function dumpCommandDefinitions(): Application
     {
+        dump($this->commandDefinitions);
+        return $this;
+    }
+
+    public function dumpCommands(): Application
+    {
+        $commands = $this->definitionsToCommands($this);
         $commands = array_map(function (Command $commmand) {
             return $commmand->toArray();
         }, $commands);
-        print_r($commands);
+        dump($commands);
+        return $this;
     }
 
-    private function definitionsToCommands(?string $parentName, CommandDefinition $commandDefinition)
+    private function printCliHeader(): void
     {
-        $flat = [];
-
-        $Command = $commandDefinition->Command ?: CommandGroup::class;
-        /** @var Command */
-        $command = new $Command($this);
-
-        $commandName = $commandDefinition->name;
-        if ($parentName && $parentName !== 'index') {
-            $commandName = $parentName . ':' . $commandName;
-        }
-
-        $command->setName($commandName);
-        $command->setDescription($commandDefinition->description ?: 'Select a command');
-        $command->setMode($commandDefinition->mode);
-
-        $flat[] = $command;
-
-        /** @var CommandDefinition */
-        foreach ($commandDefinition->subCommands as $subCommand) {
-            $subCommands = $this->definitionsToCommands($commandName, $subCommand);
-            foreach ($subCommands as $subCommand) {
-                $flat[] = $subCommand;
-            }
-        }
-
-        return $flat;
-    }
-
-    private function printCliHeader($messages = []): void
-    {
-        $colors = new \Wujunze\Colors();
+        $colors = new Colors();
 
         $lineLength = 50;
 
@@ -107,12 +104,12 @@ class Application extends SymfonyApplication
         echo $colors->getColoredString($this->getName(), 'brown');
         echo "\n";
 
-        if (count($messages)) {
+        if (count($this->infos)) {
             echo $colors->getColoredString(' * ', 'light_gray');
             echo "\n";
         }
 
-        foreach ($messages as $key => $value) {
+        foreach ($this->infos as $key => $value) {
             echo $colors->getColoredString(' * ', 'light_gray');
             echo $key . ': ';
 

@@ -13,12 +13,13 @@
     ],
     "require": {
         "php": ">=7.4",
+        "afeefa/debug-dump-log": "^0",
         "afeefacode/package-manager": "^0",
         "symfony/console": "^v5.2",
         "symfony/process": "^v5.2",
         "twig/twig": "^v3.2",
-        "wujunze/php-cli-color": "^v2.4",
-        "webmozart/path-util": "^2.3"
+        "webmozart/path-util": "^2.3",
+        "wujunze/php-cli-color": "^v2.4"
     },
     "autoload": {
         "psr-4": {

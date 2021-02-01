@@ -62,6 +62,11 @@ class Command extends SymfonyCommand
         $this->mode = $mode;
     }
 
+    public function getMode(?string $default = null): ?string
+    {
+        return $this->mode ?: $default;
+    }
+
     public function toArray()
     {
         return [
@@ -100,7 +105,7 @@ class Command extends SymfonyCommand
 
         $this->printCommandStart($this->getCommandTitle());
 
-        return $this->executeCommand();
+        return $this->executeCommand() ?: 0;
     }
 
     protected function getCommandTitle()
@@ -113,14 +118,14 @@ class Command extends SymfonyCommand
         return 0;
     }
 
-    protected function printCommandStart($info, $forcePrint = false)
+    protected function printCommandStart($info)
     {
         $this->io->title($info);
 
         if (!self::$cliBenchmark) {
-            self::$cliBenchmark = BenchmarkUtils::startBenchmark();
+            self::$cliBenchmark = BenchmarkUtil::startBenchmark();
         }
-        $this->commandBenchmark = BenchmarkUtils::startBenchmark();
+        $this->commandBenchmark = BenchmarkUtil::startBenchmark();
 
         $this->taskInfo = $info;
     }

@@ -2,8 +2,19 @@
 
 namespace Afeefa\Component\Cli;
 
+use Symfony\Component\Console\Command\Command as SymfonyCommand;
+
 class CommandGroup extends Command
 {
+    public $noCommandsMessage = null;
+
+    public function __construct(Application $application, string $name = null, string $noCommandsMessage = null)
+    {
+        $this->noCommandsMessage = $noCommandsMessage;
+
+        parent::__construct($application, $name);
+    }
+
     protected function executeCommand()
     {
         /** @var Application */
@@ -11,7 +22,7 @@ class CommandGroup extends Command
 
         $commands = $application->all();
 
-        $commands = array_filter($commands, function ($command) {
+        $commands = array_filter($commands, function (SymfonyCommand $command) {
             $name = $this->getName();
 
             if ($name === 'index') {
@@ -45,7 +56,7 @@ class CommandGroup extends Command
         });
 
         if (empty($commands)) {
-            $this->abortCommand('The cli is not supported in this directory');
+            $this->abortCommand($this->noCommandsMessage ?: 'There is no command available in this directory');
         }
 
         $commandListItems = array_values(array_map(function ($command) {
@@ -65,9 +76,10 @@ class CommandGroup extends Command
         // a default command which is always set
         // https://github.com/symfony/symfony/issues/25632
 
-        $cli = $application->cloneForCommandGroup();
+        $cli = new Application();
         $cli->addCommands($application->all());
         $command = $cli->find($choice);
+
         return $command->run($this->input, $this->output);
     }
 

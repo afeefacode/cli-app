@@ -2,7 +2,7 @@
 
 namespace Afeefa\Component\Cli;
 
-class BenchmarkUtils
+class BenchmarkUtil
 {
     public static function startBenchmark(): Benchmark
     {

@@ -120,16 +120,6 @@ trait CommandActionTrait
         exit;
     }
 
-    protected function indentText($text)
-    {
-        $text = preg_replace('/d/', 'TEST', $text);
-
-        $text = preg_replace("/\n/", "----------------\n ", $text);
-        $text = preg_replace('/ $/', '', $text);
-        // $text = trim($text);
-        return ' ------------- ' . $text;
-    }
-
     /**
      * Process
      */
@@ -209,7 +199,7 @@ trait CommandActionTrait
         return $this->doRunAction($Action, $args, $cwd, Action::TITLE_HIDDEN);
     }
 
-    protected function doRunAction(string $Action, array $args, string $cwd = null, $titleFormat = Action::TITLE_NORMAL)
+    private function doRunAction(string $Action, array $args, string $cwd = null, $titleFormat = Action::TITLE_NORMAL)
     {
         $currentDir = getcwd();
 
