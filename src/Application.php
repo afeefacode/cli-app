@@ -93,7 +93,7 @@ class Application extends SymfonyApplication implements HasDefinitionsInterface
 
     public function dumpCommandDefinitions(): Application
     {
-        dump($this->commandDefinitions);
+        debug_dump($this->commandDefinitions);
         return $this;
     }
 
@@ -103,7 +103,7 @@ class Application extends SymfonyApplication implements HasDefinitionsInterface
         $commands = array_map(function (Command $commmand) {
             return $commmand->toArray();
         }, $commands);
-        dump($commands);
+        debug_dump($commands);
         return $this;
     }
 
