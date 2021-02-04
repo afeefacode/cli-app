@@ -13,7 +13,7 @@
     ],
     "require": {
         "php": ">=7.4",
-        "afeefa/debug-dump-log": "^0.0.6",
+        "afeefa/debug-dump-log": "^0",
         "symfony/console": "^v5.2",
         "symfony/process": "^v5.2",
         "twig/twig": "^v3.2",
@@ -21,7 +21,7 @@
         "wujunze/php-cli-color": "^v2.4"
     },
     "require-dev": {
-        "afeefa/package-manager": "^0.0.7"
+        "afeefa/package-manager": "^0"
     },
     "autoload": {
         "psr-4": {
@@ -33,4 +33,4 @@
             "Example\\": "example"
         }
     }
-  }
+}
