@@ -131,6 +131,9 @@ class Command extends SymfonyCommand
         foreach ($definition->getArguments() as $argumentName => $argument) {
             if (isset($this->selectableArgumentChoices[$argumentName])) {
                 $choices = $this->selectableArgumentChoices[$argumentName];
+                if (!count($choices)) {
+                    $this->abortCommand('No choices found for: ' . $argument->getDescription());
+                }
                 $value = $this->getArgument($argumentName);
                 if (!$value || !in_array($value, $choices)) {
                     $value = $this->printChoice('Select ' . lcfirst($argument->getDescription()), $choices);
