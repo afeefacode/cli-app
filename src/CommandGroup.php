@@ -83,8 +83,8 @@ class CommandGroup extends Command
         return $command->run($this->input, $this->output);
     }
 
-    protected function printCommandFinish()
+    protected function printCommandFinish(): void
     {
-        // show nothing here
+        // show nothing at the end of command
     }
 }

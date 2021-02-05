@@ -41,6 +41,16 @@ class Command extends SymfonyCommand
      */
     protected static $cliBenchmark;
 
+    /**
+     * @var array
+     */
+    protected $selectableArgumentChoices = [];
+
+    /**
+     * @var array
+     */
+    protected $selectableArgumentValues = [];
+
     public function __construct(Application $application, string $name = null)
     {
         $this->setApplication($application);
@@ -55,6 +65,13 @@ class Command extends SymfonyCommand
 
     protected function setArguments()
     {
+    }
+
+    protected function addSelectableArgument(string $name, array $choices, int $mode = null, string $description = '', $default = null)
+    {
+        $this->selectableArgumentChoices[$name] = $choices;
+        $this->addArgument($name, $mode, $description, $default);
+        return $this;
     }
 
     public function setMode(?string $mode)
@@ -79,6 +96,10 @@ class Command extends SymfonyCommand
 
     protected function getArgument(string $key, $default = null)
     {
+        if (array_key_exists($key, $this->selectableArgumentValues)) {
+            return $this->selectableArgumentValues[$key];
+        }
+
         return $this->input->getArgument($key) ?: $default;
     }
 
@@ -104,6 +125,20 @@ class Command extends SymfonyCommand
         $this->io = new SymfonyStyle($input, $output);
 
         $this->printCommandStart($this->getCommandTitle());
+
+        // select required arguments
+        $definition = $this->getNativeDefinition();
+        foreach ($definition->getArguments() as $argumentName => $argument) {
+            if (isset($this->selectableArgumentChoices[$argumentName])) {
+                $choices = $this->selectableArgumentChoices[$argumentName];
+                $value = $this->getArgument($argumentName);
+                if (!$value || !in_array($value, $choices)) {
+                    $value = $this->printChoice('Select ' . lcfirst($argument->getDescription()), $choices);
+                    $this->selectableArgumentValues[$argumentName] = $value;
+
+                }
+            }
+        }
 
         return $this->executeCommand() ?: 0;
     }
@@ -132,7 +167,7 @@ class Command extends SymfonyCommand
         }
     }
 
-    protected function printCommandFinish()
+    protected function printCommandFinish(): void
     {
         if ($this->taskInfo) {
             $diffCli = self::$cliBenchmark->getDiff();
@@ -144,6 +179,8 @@ class Command extends SymfonyCommand
             $this->io->newLine();
             $this->printText("<info>OK: $this->taskInfo</info>");
 
+            $this->printText($this->getCommandUsed());
+
             $text = "time finish: $commandFinishTime, command duration: $commandDuration sec";
             $this->printText($text);
 
@@ -151,5 +188,32 @@ class Command extends SymfonyCommand
 
             $this->io->newLine();
         }
+    }
+
+    protected function getCommandUsed(): string
+    {
+        $args = [$_SERVER['argv'][0], $this->getName()];
+
+        $definition = $this->getNativeDefinition();
+
+        foreach ($definition->getArguments() as $argumentName => $_) {
+            if (array_key_exists($argumentName, $this->selectableArgumentValues)) {
+                $args[] = $this->selectableArgumentValues[$argumentName];
+            } else {
+                $value = $this->getArgument($argumentName);
+                if ($value) {
+                    $args[] = $this->getArgument($argumentName);
+                }
+            }
+        }
+
+        foreach ($definition->getOptions() as $optionName => $_) {
+            if ($this->getOption($optionName)) {
+                $args[] = '--' . $optionName;
+            }
+        }
+
+        return implode(' ', $args);
+
     }
 }
