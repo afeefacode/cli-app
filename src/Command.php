@@ -132,7 +132,7 @@ class Command extends SymfonyCommand
             if (isset($this->selectableArgumentChoices[$argumentName])) {
                 $choices = $this->selectableArgumentChoices[$argumentName];
                 if (!count($choices)) {
-                    $this->abortCommand('No choices found for: ' . $argument->getDescription());
+                    $this->abortCommand($argument->getDescription());
                 }
                 $value = $this->getArgument($argumentName);
                 if (!$value || !in_array($value, $choices)) {
