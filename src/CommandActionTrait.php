@@ -7,6 +7,7 @@ use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 use Twig\Environment;
 use Twig\Loader\ArrayLoader;
+use Webmozart\PathUtil\Path;
 
 trait CommandActionTrait
 {
@@ -62,8 +63,14 @@ trait CommandActionTrait
         $command = preg_replace('/ +/', ' ', $command);
         $this->printText('<fg=blue>$ cd ' . ($cwd ?? getcwd()) . '</>');
 
-        $cwd = ($cwd ?? getcwd()) . '/';
-        $command = preg_replace("~$cwd~", '', $command);
+        $cwd = ($cwd ?? getcwd());
+
+        $command = preg_replace_callback('/[\-\.\w\/]+/', function ($match) use ($cwd) {
+            return Path::makeRelative($match[0], $cwd);
+        }, $command);
+
+        $command = preg_replace('/\n/', ' ', $command);
+
         $this->printText('<fg=blue>$ ' . $command . '</>');
 
         $this->printNewLine();
