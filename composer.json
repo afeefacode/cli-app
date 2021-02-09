@@ -21,7 +21,6 @@
         "wujunze/php-cli-color": "^v2.4"
     },
     "require-dev": {
-        "afeefa/package-manager": "^0"
     },
     "autoload": {
         "psr-4": {
