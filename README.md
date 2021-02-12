@@ -148,8 +148,7 @@ examples/feed/feed
 
 ### Example 3: Command Arguments
 
-Command arguments are a basic cli feature. If you want to help the user by providing a list of argument values to choose from, you can use the
-This example shows:
+Command arguments are a basic cli feature. If you want to help the user by providing a list of argument values to choose from, you can use selectable arguments. The example shows:
 
 * using and consuming selectable arguments
 * setting a default command
