@@ -66,6 +66,10 @@ Install via composer as usual:
 composer require afeefa/cli-app
 ```
 
+## Documentation
+
+https://afeefa-cli-app.readthedocs.io/
+
 ## Run the example
 
 ```bash
