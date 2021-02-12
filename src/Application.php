@@ -18,6 +18,7 @@ class Application extends SymfonyApplication implements HasDefinitionsInterface
     }
 
     protected $BeforeCommand;
+    protected $defaultCommandName;
     protected $infos = [];
 
     public function run(InputInterface $input = null, OutputInterface $output = null)
@@ -27,7 +28,12 @@ class Application extends SymfonyApplication implements HasDefinitionsInterface
         $indexCommand = new CommandGroup($this, 'index', $this->noCommandsMessage);
         $indexCommand->setDescription('Select a command');
         $this->add($indexCommand);
-        $this->setDefaultCommand($indexCommand->getName());
+
+        if ($this->defaultCommandName) {
+            $this->setDefaultCommand($this->defaultCommandName);
+        } else {
+            $this->setDefaultCommand($indexCommand->getName());
+        }
 
         foreach ($commands as $command) {
             $this->add($command);
@@ -80,6 +86,11 @@ class Application extends SymfonyApplication implements HasDefinitionsInterface
     public function infos(array $infos)
     {
         $this->infos = $infos;
+        return $this;
+    }
+
+    function default(string $name): Application {
+        $this->defaultCommandName = $name;
         return $this;
     }
 
