@@ -6,6 +6,7 @@ trait HasDefinitionsTrait
 {
     protected $commandDefinitions = [];
     protected $noCommandsMessage;
+    protected $defaultCommandName;
 
     public function command(string $name, $Command, string $description): HasDefinitionsInterface
     {
@@ -28,7 +29,7 @@ trait HasDefinitionsTrait
 
     public function group(string $name, string $description, callable $callback): HasDefinitionsInterface
     {
-        $group = new Definition();
+        $group = new Group();
         $group->name = $name;
         $group->description = $description;
         $group->Command = CommandGroup::class;
@@ -46,33 +47,38 @@ trait HasDefinitionsTrait
         return $this;
     }
 
+    function default(string $name): HasDefinitionsInterface {
+        $this->defaultCommandName = $name;
+        return $this;
+    }
+
     public function definitionsToCommands(Application $app, ?string $parentName = null): array
     {
         $commands = [];
 
         /** @var HasDefinitionsInterface */
-        foreach ($this->commandDefinitions as $Definition) {
-            $Command = $Definition->Command;
+        foreach ($this->commandDefinitions as $definition) {
+            $Command = $definition->Command;
 
             /** @var Command */
             if ($Command === CommandGroup::class) {
-                $command = new CommandGroup($app, null, $Definition->getNoCommandsMessage());
+                $command = new CommandGroup($app, null, $definition->getDefaultCommandName(), $definition->getNoCommandsMessage());
             } else {
                 $command = new $Command($app);
             }
 
-            $commandName = $Definition->name;
+            $commandName = $definition->name;
             if ($parentName) {
                 $commandName = $parentName . ':' . $commandName;
             }
 
             $command->setName($commandName);
-            $command->setDescription($Definition->description ?: 'Select a command');
-            $command->setCommandMode($Definition->commandMode);
+            $command->setDescription($definition->description ?: 'Select a command');
+            $command->setCommandMode($definition->commandMode);
 
             $commands[] = $command;
 
-            $subCommands = $Definition->definitionsToCommands($app, $commandName);
+            $subCommands = $definition->definitionsToCommands($app, $commandName);
 
             $commands = [...$commands, ...$subCommands];
         }
@@ -83,5 +89,10 @@ trait HasDefinitionsTrait
     public function getNoCommandsMessage(): ?string
     {
         return $this->noCommandsMessage;
+    }
+
+    public function getDefaultCommandName(): ?string
+    {
+        return $this->defaultCommandName;
     }
 }

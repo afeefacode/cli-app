@@ -6,10 +6,12 @@ use Symfony\Component\Console\Command\Command as SymfonyCommand;
 
 class CommandGroup extends Command
 {
+    public $defaultCommandName = null;
     public $noCommandsMessage = null;
 
-    public function __construct(Application $application, string $name = null, string $noCommandsMessage = null)
+    public function __construct(Application $application, string $name = null, string $defaultCommandName = null, string $noCommandsMessage = null)
     {
+        $this->defaultCommandName = $defaultCommandName;
         $this->noCommandsMessage = $noCommandsMessage;
 
         parent::__construct($application, $name);
@@ -59,6 +61,16 @@ class CommandGroup extends Command
             $this->abortCommand($this->noCommandsMessage ?: 'There is no command available in this directory');
         }
 
+        if ($this->defaultCommandName) {
+            $scopedCommandName = $this->getName() . ':' . $this->defaultCommandName;
+            foreach ($commands as $command) {
+                if ($command->getName() === $scopedCommandName) {
+                    $this->printBullet('<info>' . $command->getName() . '</info> - ' . $command->getDescription());
+                    return $this->runCommand($scopedCommandName);
+                }
+            }
+        }
+
         $commandListItems = array_values(array_map(function ($command) {
             return '<info>' . $command->getName() . '</info> - ' . $command->getDescription();
         }, $commands));
@@ -71,6 +83,19 @@ class CommandGroup extends Command
 
         $choice = $this->printChoice('Select a command', $commandNames);
 
+        return $this->runCommand($choice);
+    }
+
+    protected function printCommandFinish(): void
+    {
+        // show nothing at the end of command
+    }
+
+    protected function runCommand(string $name)
+    {
+        /** @var Application */
+        $application = $this->getApplication();
+
         // create new application and run command
         // we need this, since symfony/application starts with
         // a default command which is always set
@@ -78,13 +103,8 @@ class CommandGroup extends Command
 
         $cli = new Application();
         $cli->addCommands($application->all());
-        $command = $cli->find($choice);
+        $command = $cli->find($name);
 
         return $command->run($this->input, $this->output);
-    }
-
-    protected function printCommandFinish(): void
-    {
-        // show nothing at the end of command
     }
 }

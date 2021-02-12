@@ -15,17 +15,17 @@ class Application extends SymfonyApplication implements HasDefinitionsInterface
         HasDefinitionsTrait::command as definitionsCommand;
         HasDefinitionsTrait::group as definitionsGroup;
         HasDefinitionsTrait::noCommandAvailable as definitionsNoCommandsAvailable;
+        HasDefinitionsTrait::default as definitionsDefault;
     }
 
     protected $BeforeCommand;
-    protected $defaultCommandName;
     protected $infos = [];
 
     public function run(InputInterface $input = null, OutputInterface $output = null)
     {
         $commands = $this->definitionsToCommands($this);
 
-        $indexCommand = new CommandGroup($this, 'index', $this->noCommandsMessage);
+        $indexCommand = new CommandGroup($this, 'index', null, $this->noCommandsMessage);
         $indexCommand->setDescription('Select a command');
         $this->add($indexCommand);
 
@@ -90,8 +90,7 @@ class Application extends SymfonyApplication implements HasDefinitionsInterface
     }
 
     function default(string $name): Application {
-        $this->defaultCommandName = $name;
-        return $this;
+        return $this->definitionsDefault($name);
     }
 
     /**
