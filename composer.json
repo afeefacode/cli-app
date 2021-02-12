@@ -1,6 +1,6 @@
 {
     "name": "afeefa/cli-app",
-    "version": "0.0.17",
+    "version": "0.0.18",
     "type": "library",
     "description": "Convenient wrapper around symfony console",
     "license": "MIT",
