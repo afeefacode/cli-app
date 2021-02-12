@@ -7,7 +7,7 @@ Create a `symfony/console` PHP cli app with a minimum of configuration.
 At times a project might need a cli tool to perform some configuration, installation or maintenance work. It shouldn't be much effort to get one running. This package is a convenience wrapper around the PHP's [symfony/console](https://github.com/symfony/console) framework and aims to simplify the creation of cli apps. It provides:
 
 * a fluent interface to create (nested) commands
-* selectable sub commands
+* selectable (sub) commands
 * reusable actions
 * helper functions for input, output and process execution
 
