@@ -11,7 +11,7 @@ At times a project might need a cli tool to perform some configuration, installa
 * reusable actions
 * helper functions for input, output and process execution
 
-## Basic Example
+## Example1: Basic workflow
 
 The most basic example shows the workflow of `cli-app`. You create one or more commands (usually in a separate file) and add those commands to the application instance by providing a command name and a description.
 
@@ -60,7 +60,7 @@ examples/pets/pets
 
 ![output](https://raw.githubusercontent.com/afeefacode/cli-app/main/docs/source/_static/pets.gif "output")
 
-## Example with actions
+## Example2: Actions
 
 The examples shows three things:
 
@@ -71,6 +71,7 @@ The examples shows three things:
 ```php
 <?php
 ...
+use Afeefa\Component\Cli\Action;
 
 class Names extends Action
 {
@@ -124,6 +125,71 @@ examples/feed/feed
 ```
 
 ![output](https://raw.githubusercontent.com/afeefacode/cli-app/main/docs/source/_static/feed.gif "output")
+
+## Example3: Command arguments
+
+This example shows:
+
+* using and consuming selectable arguments
+* setting a default command
+
+```php
+<?php
+...
+
+class Walk extends Command
+{
+    protected function setArguments()
+    {
+        $this->addSelectableArgument( // selectable argument
+            'pet', ['cat', 'dog'], 'The pet to walk with'
+        );
+
+        $this->addSelectableArgument( // dependent argument
+            'name',
+            function () {
+                $pet = $this->getArgument('pet');
+                return $pet === 'cat'
+                    ? ['Kitty', 'Tiger', 'Meow']
+                    : ['Laika', 'Lassie', 'Goofy'];
+            },
+            'The name of the pet'
+        );
+    }
+
+    protected function executeCommand()
+    {
+        $pet = $this->getArgument('pet');
+        $name = $this->getArgument('name');
+
+        if ($pet === 'cat') {
+            $this->printBullet("<info>$name</info> does not walk with you");
+        } else {
+            $this->printBullet("<info>$name</info> is happy to walk with you");
+        }
+    }
+}
+
+(new Application('Pets App'))
+    ->command('walk', Walk::class, 'Walk with a pet')
+    ->default('walk')
+    ->run();
+```
+
+Run the example:
+
+```bash
+git clone git@github.com:afeefacode/cli-app.git
+cd cli-app
+composer install
+
+examples/walk/walk
+# examples/walk/walk
+# examples/walk/walk walk dog
+# examples/walk/walk walk dog Laika
+```
+
+![output](https://raw.githubusercontent.com/afeefacode/cli-app/main/docs/source/_static/walk.gif "output")
 
 ## Installation
 
