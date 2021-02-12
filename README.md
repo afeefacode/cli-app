@@ -11,7 +11,10 @@ At times a project might need a cli tool to perform some configuration, installa
 * reusable actions
 * helper functions for input, output and process execution
 
-## Example1: Basic workflow
+## Examples
+
+
+### Example1: Basic workflow
 
 The most basic example shows the workflow of `cli-app`. You create one or more commands (usually in a separate file) and add those commands to the application instance by providing a command name and a description.
 
@@ -60,7 +63,7 @@ examples/pets/pets
 
 ![output](https://raw.githubusercontent.com/afeefacode/cli-app/main/docs/source/_static/pets.gif "output")
 
-## Example2: Actions
+### Example2: Actions
 
 The examples shows three things:
 
@@ -126,7 +129,7 @@ examples/feed/feed
 
 ![output](https://raw.githubusercontent.com/afeefacode/cli-app/main/docs/source/_static/feed.gif "output")
 
-## Example3: Command arguments
+### Example3: Command arguments
 
 This example shows:
 
