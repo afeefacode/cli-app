@@ -14,7 +14,7 @@ class Names extends Action
         $names = $pet === 'cat'
             ? ['Kitty', 'Tiger', 'Meow']
             : ['Laika', 'Lassie', 'Goofy'];
-        return $this->printChoice("Select a $pet", $names);
+        return $this->printChoice("Select a $pet", $names); // prompt
     }
 }
 
@@ -30,23 +30,15 @@ class Feed extends Command
 
 class Cuddle extends Command
 {
-    protected function setArguments()
-    {
-        $this->addSelectableArgument( // selectable argument
-            'pet', ['cat', 'dog'], 'The pet to cuddle'
-        );
-    }
-
     protected function executeCommand()
     {
-        $pet = $this->getArgument('pet');
-        $name = $this->runAction(Names::class, ['pet' => $pet]);
+        $name = $this->runAction(Names::class, ['pet' => 'cat']);
         $this->printBullet("Cuddle <info>$name</info>");
     }
 }
 
 (new Application('Pets App'))
-    ->command('feed-cat', [Feed::class, 'cat'], 'Feed a cat') // command mode
+    ->command('feed-cat', [Feed::class, 'cat'], 'Feed a cat') // 'cat' = mode
     ->command('feed-dog', [Feed::class, 'dog'], 'Feed a dog')
-    ->command('cuddle', Cuddle::class, 'Cuddle a pet')
+    ->command('cuddle-cat', Cuddle::class, 'Cuddle a cat')
     ->run();

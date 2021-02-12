@@ -29,7 +29,7 @@ class Cats extends Command
 {
     protected function executeCommand()
     {
-        $this->printList(['Molly', 'Felix', 'Minka']);
+        $this->printList(['Kitty', 'Tiger', 'Meow']);
     }
 }
 
@@ -37,7 +37,7 @@ class Dogs extends Command
 {
     protected function executeCommand()
     {
-        $this->printList(['Bella', 'Charlie', 'Luna']);
+        $this->printList(['Laika', 'Lassie', 'Goofy']);
     }
 }
 
@@ -60,18 +60,17 @@ examples/pets/pets
 
 ![output](https://raw.githubusercontent.com/afeefacode/cli-app/main/docs/source/_static/pets.gif "output")
 
-## Example with actions and arguments
+## Example with actions
 
-The examples shows a reusable action and two possibilities to configure a command.
+The examples shows three things:
+
+* an action, which is kind of a lightweight command, that can be called from any command or action
+* a prompt, which lets the user select from a list of choices
+* and a possibility to reuse a command by giving it a mode
 
 ```php
 <?php
-
-require_once __DIR__ . '/../../vendor/autoload.php';
-
-use Afeefa\Component\Cli\Action;
-use Afeefa\Component\Cli\Application;
-use Afeefa\Component\Cli\Command;
+...
 
 class Names extends Action
 {
@@ -81,7 +80,7 @@ class Names extends Action
         $names = $pet === 'cat'
             ? ['Kitty', 'Tiger', 'Meow']
             : ['Laika', 'Lassie', 'Goofy'];
-        return $this->printChoice("Select a $pet", $names);
+        return $this->printChoice("Select a $pet", $names); // prompt
     }
 }
 
@@ -97,26 +96,19 @@ class Feed extends Command
 
 class Cuddle extends Command
 {
-    protected function setArguments()
-    {
-        $this->addSelectableArgument( // selectable argument
-            'pet', ['cat', 'dog'], 'The pet to cuddle'
-        );
-    }
-
     protected function executeCommand()
     {
-        $pet = $this->getArgument('pet');
-        $name = $this->runAction(Names::class, ['pet' => $pet]);
+        $name = $this->runAction(Names::class, ['pet' => 'cat']);
         $this->printBullet("Cuddle <info>$name</info>");
     }
 }
 
 (new Application('Pets App'))
-    ->command('feed-cat', [Feed::class, 'cat'], 'Feed a cat') // command mode
+    ->command('feed-cat', [Feed::class, 'cat'], 'Feed a cat') // 'cat' = mode
     ->command('feed-dog', [Feed::class, 'dog'], 'Feed a dog')
-    ->command('cuddle', Cuddle::class, 'Cuddle a pet')
+    ->command('cuddle-cat', Cuddle::class, 'Cuddle a cat')
     ->run();
+
 ```
 
 Run the example:
@@ -128,7 +120,7 @@ composer install
 
 examples/feed/feed
 # examples/feed/feed feed-dog
-# examples/feed/feed cuddle dog
+# examples/feed/feed cuddle-cat
 ```
 
 ![output](https://raw.githubusercontent.com/afeefacode/cli-app/main/docs/source/_static/feed.gif "output")
