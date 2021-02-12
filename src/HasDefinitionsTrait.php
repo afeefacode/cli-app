@@ -52,7 +52,7 @@ trait HasDefinitionsTrait
         return $this;
     }
 
-    public function definitionsToCommands(Application $app, ?string $parentName = null): array
+    public function definitionsToCommands(Application $app, ?Command $parentCommand = null): array
     {
         $commands = [];
 
@@ -68,17 +68,18 @@ trait HasDefinitionsTrait
             }
 
             $commandName = $definition->name;
-            if ($parentName) {
-                $commandName = $parentName . ':' . $commandName;
+            if ($parentCommand) {
+                $commandName = $parentCommand->getName() . ':' . $commandName;
             }
 
             $command->setName($commandName);
             $command->setDescription($definition->description ?: 'Select a command');
             $command->setCommandMode($definition->commandMode);
+            $command->setParentCommand($parentCommand);
 
             $commands[] = $command;
 
-            $subCommands = $definition->definitionsToCommands($app, $commandName);
+            $subCommands = $definition->definitionsToCommands($app, $command);
 
             $commands = [...$commands, ...$subCommands];
         }

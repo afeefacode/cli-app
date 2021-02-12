@@ -12,7 +12,7 @@ interface HasDefinitionsInterface
 
     public function noCommandAvailable(string $message): HasDefinitionsInterface;
 
-    public function definitionsToCommands(Application $app, ?string $parentName = null): array;
+    public function definitionsToCommands(Application $app, ?Command $parentCommand = null): array;
 
     public function getDefaultCommandName(): ?string;
 

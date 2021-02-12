@@ -33,14 +33,14 @@ class Command extends SymfonyCommand
     protected $commandBenchmark;
 
     /**
-     * @var string
-     */
-    protected $commandMode;
-
-    /**
      * @var Benchmark
      */
     protected static $cliBenchmark;
+
+    /**
+     * @var string
+     */
+    protected $commandMode;
 
     /**
      * @var array
@@ -51,6 +51,11 @@ class Command extends SymfonyCommand
      * @var array
      */
     protected $selectableArgumentValues = [];
+
+    /**
+     * @var Command
+     */
+    protected $parentCommand;
 
     public function __construct(Application $application, string $name = null)
     {
@@ -83,6 +88,32 @@ class Command extends SymfonyCommand
     public function getCommandMode(?string $default = null): ?string
     {
         return $this->commandMode ?: $default;
+    }
+
+    public function getParentCommand(): ?Command
+    {
+        return $this->parentCommand;
+    }
+
+    public function setParentCommand(Command $parentCommand = null)
+    {
+        $this->parentCommand = $parentCommand;
+
+        return $this;
+    }
+
+    public function getLocalName(): string
+    {
+        return preg_replace('/^.+\:/', '', $this->getName());
+    }
+
+    public function getLocalParentName(): ?string
+    {
+        $parent = $this->getParentCommand();
+        if ($parent) {
+            return preg_replace('/^.+\:/', '', $parent->getName());
+        }
+        return null;
     }
 
     public function toArray()
