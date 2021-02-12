@@ -4,10 +4,9 @@ Create a `symfony/console` PHP cli app with a minimum of configuration.
 
 ## Description
 
-At times a project could need an accompanying cli tool to perform some configuration, installation or maintenance tasks. It shouldn't be much effort to get one running, especially, if it's about just a few commands. This package is a convenience wrapper around the PHP's [symfony/console](https://github.com/symfony/console) framework and aims to simplify the creation of cli apps. It provides:
+At times a project might need a cli tool to perform some configuration, installation or maintenance work. It shouldn't be much effort to get one running. This package is a convenience wrapper around the PHP's [symfony/console](https://github.com/symfony/console) framework and aims to simplify the creation of cli apps. It provides:
 
-* all, what `symfony/console` provides
-* fluent interface to create (nested) commands
+* a fluent interface to create (nested) commands
 * selectable sub commands
 * reusable actions
 * helper functions for input, output and process execution
@@ -48,17 +47,9 @@ class Dogs extends Command
     ->run();
 ```
 
-You can run this app from the command line:
-
-```shell
-$ php pets.php
-```
-
 ![output](https://raw.githubusercontent.com/afeefacode/cli-app/main/docs/source/_static/pets.gif "output")
 
-To [run the app as a normal shell command]() (without typing `php`) you need a little boilerplate. See the documention.
-
-## Install
+## Installation
 
 Install via composer as usual:
 
