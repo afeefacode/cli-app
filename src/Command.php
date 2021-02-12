@@ -68,7 +68,7 @@ class Command extends SymfonyCommand
     {
     }
 
-    protected function addSelectableArgument(string $name, array $choices, string $description = '', $default = null)
+    protected function addSelectableArgument(string $name, $choices, string $description = '', $default = null)
     {
         $this->selectableArgumentChoices[$name] = $choices;
         $this->addArgument($name, InputArgument::OPTIONAL, $description, $default);
@@ -132,6 +132,9 @@ class Command extends SymfonyCommand
         foreach ($definition->getArguments() as $argumentName => $argument) {
             if (isset($this->selectableArgumentChoices[$argumentName])) {
                 $choices = $this->selectableArgumentChoices[$argumentName];
+                if (is_callable($choices)) {
+                    $choices = $choices();
+                }
                 if (!count($choices)) {
                     $this->abortCommand($argument->getDescription());
                 }
