@@ -11,10 +11,26 @@ At times a project might need a cli tool to perform some configuration, installa
 * reusable actions
 * helper functions for input, output and process execution
 
+## Installation
+
+Install via composer as usual. Most probably you use the cli for dev purposes:
+
+```bash
+composer require afeefa/cli-app --save-dev
+```
+
+## Documentation
+
+See the examples below for inspiration and head over to the documentation page on details regarding installation, configuration and further usage. https://afeefa-cli-app.readthedocs.io
+
 ## Examples
 
+1. [Basic Workflow](#example-1-basic-workflow)
+2. [Command Actions](#example-2-command-actions)
+3. [Command Arguments](#example-3-command-arguments)
 
-### Example1: Basic workflow
+### Example 1: Basic workflow
+<a name="example1"></a>
 
 The most basic example shows the workflow of `cli-app`. You create one or more commands (usually in a separate file) and add those commands to the application instance by providing a command name and a description.
 
@@ -63,7 +79,7 @@ examples/pets/pets
 
 ![output](https://raw.githubusercontent.com/afeefacode/cli-app/main/docs/source/_static/pets.gif "output")
 
-### Example2: Actions
+### Example 2: Command Actions
 
 The examples shows three things:
 
@@ -129,8 +145,9 @@ examples/feed/feed
 
 ![output](https://raw.githubusercontent.com/afeefacode/cli-app/main/docs/source/_static/feed.gif "output")
 
-### Example3: Command arguments
+### Example 3: Command Arguments
 
+Command arguments are a basic cli feature. If you want to help the user by providing a list of argument values to choose from, you can use the
 This example shows:
 
 * using and consuming selectable arguments
@@ -193,15 +210,3 @@ examples/walk/walk
 ```
 
 ![output](https://raw.githubusercontent.com/afeefacode/cli-app/main/docs/source/_static/walk.gif "output")
-
-## Installation
-
-Install via composer as usual:
-
-```bash
-composer require afeefa/cli-app
-```
-
-## Documentation
-
-https://afeefa-cli-app.readthedocs.io
