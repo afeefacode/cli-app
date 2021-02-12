@@ -9,5 +9,5 @@ class Definition implements HasDefinitionsInterface
     public $name;
     public $Command;
     public $description;
-    public $mode;
+    public $commandMode;
 }

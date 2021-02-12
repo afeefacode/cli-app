@@ -3,6 +3,7 @@
 namespace Afeefa\Component\Cli;
 
 use Symfony\Component\Console\Command\Command as SymfonyCommand;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
@@ -34,7 +35,7 @@ class Command extends SymfonyCommand
     /**
      * @var string
      */
-    protected $mode;
+    protected $commandMode;
 
     /**
      * @var Benchmark
@@ -58,7 +59,7 @@ class Command extends SymfonyCommand
         parent::__construct($name);
     }
 
-    public function configure()
+    protected function configure()
     {
         $this->setArguments();
     }
@@ -67,21 +68,21 @@ class Command extends SymfonyCommand
     {
     }
 
-    protected function addSelectableArgument(string $name, array $choices, int $mode = null, string $description = '', $default = null)
+    protected function addSelectableArgument(string $name, array $choices, string $description = '', $default = null)
     {
         $this->selectableArgumentChoices[$name] = $choices;
-        $this->addArgument($name, $mode, $description, $default);
+        $this->addArgument($name, InputArgument::OPTIONAL, $description, $default);
         return $this;
     }
 
-    public function setMode(?string $mode)
+    public function setCommandMode(?string $commandMode)
     {
-        $this->mode = $mode;
+        $this->commandMode = $commandMode;
     }
 
-    public function getMode(?string $default = null): ?string
+    public function getCommandMode(?string $default = null): ?string
     {
-        return $this->mode ?: $default;
+        return $this->commandMode ?: $default;
     }
 
     public function toArray()
@@ -90,7 +91,7 @@ class Command extends SymfonyCommand
             'name' => $this->getName(),
             'class' => get_class($this),
             'description' => $this->getDescription(),
-            'mode' => $this->mode
+            'mode' => $this->commandMode
         ];
     }
 

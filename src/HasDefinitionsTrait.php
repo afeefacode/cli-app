@@ -14,7 +14,7 @@ trait HasDefinitionsTrait
 
         if (is_array($Command)) {
             $definition->Command = $Command[0];
-            $definition->mode = $Command[1] ?? null;
+            $definition->commandMode = $Command[1] ?? null;
         } else {
             $definition->Command = $Command;
         }
@@ -68,7 +68,7 @@ trait HasDefinitionsTrait
 
             $command->setName($commandName);
             $command->setDescription($Definition->description ?: 'Select a command');
-            $command->setMode($Definition->mode);
+            $command->setCommandMode($Definition->commandMode);
 
             $commands[] = $command;
 
