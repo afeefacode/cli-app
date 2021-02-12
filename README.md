@@ -54,7 +54,7 @@ You can run this app from the command line:
 $ php pets.php
 ```
 
-![output](./docs/source/_static/pets.gif "output")
+![output](https://raw.githubusercontent.com/afeefacode/cli-app/main/docs/source/_static/pets.gif "output")
 
 To [run the app as a normal shell command]() (without typing `php`) you need a little boilerplate. See the documention.
 
