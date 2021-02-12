@@ -32,7 +32,7 @@ class Cuddle extends Command
 {
     protected function setArguments()
     {
-        $this->addSelectableArgument(
+        $this->addSelectableArgument( // selectable argument
             'pet', ['cat', 'dog'], 'The pet to cuddle'
         );
     }
@@ -46,7 +46,7 @@ class Cuddle extends Command
 }
 
 (new Application('Pets App'))
-    ->command('feed-cat', [Feed::class, 'cat'], 'Feed a cat')
+    ->command('feed-cat', [Feed::class, 'cat'], 'Feed a cat') // command mode
     ->command('feed-dog', [Feed::class, 'dog'], 'Feed a dog')
     ->command('cuddle', Cuddle::class, 'Cuddle a pet')
     ->run();
