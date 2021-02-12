@@ -9,7 +9,7 @@ class Cats extends Command
 {
     protected function executeCommand()
     {
-        $this->printList(['Molly', 'Felix', 'Minka']);
+        $this->printList(['Kitty', 'Tiger', 'Meow']);
     }
 }
 
@@ -17,7 +17,7 @@ class Dogs extends Command
 {
     protected function executeCommand()
     {
-        $this->printList(['Bella', 'Charlie', 'Luna']);
+        $this->printList(['Laika', 'Lassie', 'Goofy']);
     }
 }
 
