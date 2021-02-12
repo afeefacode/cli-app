@@ -7,7 +7,7 @@ Create a `symfony/console` PHP cli app with a minimum of configuration.
 At times a project might need a cli tool to perform some configuration, installation or maintenance work. It shouldn't be much effort to get one running. This package is a convenience wrapper around the PHP's [symfony/console](https://github.com/symfony/console) framework and aims to simplify the creation of cli apps. It provides:
 
 * a fluent interface to create (nested) commands
-* selectable (sub) commands
+* selectable (sub) commands and command arguments
 * reusable actions
 * helper functions for input, output and process execution
 
@@ -21,13 +21,14 @@ composer require afeefa/cli-app --save-dev
 
 ## Documentation
 
-See the examples below for inspiration and head over to the documentation page on details regarding installation, configuration and further usage. https://afeefa-cli-app.readthedocs.io
+See the examples below for inspiration and head over to the documentation page on details regarding installation, configuration and further usage: https://afeefa-cli-app.readthedocs.io
 
 ## Examples
 
 1. [Basic Workflow](#example-1-basic-workflow)
 2. [Command Actions](#example-2-command-actions)
 3. [Command Arguments](#example-3-command-arguments)
+3. [Nested Commands](#example-4-nested-commands)
 
 ### Example 1: Basic workflow
 <a name="example1"></a>
@@ -210,3 +211,56 @@ examples/walk/walk
 ```
 
 ![output](https://raw.githubusercontent.com/afeefacode/cli-app/main/docs/source/_static/walk.gif "output")
+
+### Example 4: Nested Commands
+
+The example shows:
+
+* the configuration of nested commands
+* the ability to inspect a commands or a command parent's name.
+
+```php
+<?php
+...
+use Afeefa\Component\Cli\Group;
+
+class Play extends Command
+{
+    protected function executeCommand()
+    {
+        $action = $this->getLocalName();
+        $pet = $this->getLocalParentName();
+        if ($pet === 'cat') {
+            $this->printBullet("<info>Cat</info> does not like <info>$action</info>");
+        } else {
+            $this->printBullet("<info>Dog</info> likes <info>$action</info>");
+        }
+    }
+}
+
+(new Application('Pets App'))
+    ->group('cat', 'Play with cat', function (Group $group) {
+        $group->command('hide-seek', Play::class, 'Hide and seek');
+    })
+    ->group('dog', 'Play with dog', function (Group $group) {
+        $group
+            ->command('fetch', Play::class, 'Fetch the stick')
+            ->command('cuddle', Play::class, 'Cuddle the dog');
+    })
+    ->run();
+```
+
+Run the example:
+
+```bash
+git clone git@github.com:afeefacode/cli-app.git
+cd cli-app
+composer install
+
+examples/play/play
+# examples/play/play
+# examples/play/play dog
+# examples/play/play dog:fetch
+```
+
+![output](https://raw.githubusercontent.com/afeefacode/cli-app/main/docs/source/_static/play.gif "output")
