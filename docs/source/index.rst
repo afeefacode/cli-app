@@ -4,6 +4,7 @@
     :hidden:
     :maxdepth: 2
 
+    API Documentation <https://afeefacode.github.io/cli-app/api>
     GitHub Repository <https://github.com/afeefacode/cli-app>
 
 Indices and tables

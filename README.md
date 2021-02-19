@@ -21,7 +21,7 @@ composer require afeefa/cli-app --save-dev
 
 ## Documentation
 
-See the examples below for inspiration and head over to the documentation page on details regarding installation, configuration and further usage: https://afeefa-cli-app.readthedocs.io
+See the examples below for inspiration and head over to the documentation page on details regarding installation, configuration and further usage: https://afeefa-cli-app.readthedocs.io and finde the full API Documentation here: https://afeefacode.github.io/cli-app/api
 
 ## Examples
 
