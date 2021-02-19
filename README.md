@@ -278,6 +278,7 @@ Install `phpDocumentor` globally: https://docs.phpdoc.org/3.0/guide/getting-star
 ```bash
 rm -rf docs/api
 phpdoc --cache-folder=docs/build/api -d src -t docs/api
+firefox docs/api/index.html
 ```
 
 ### Sphinx documentation
