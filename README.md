@@ -266,3 +266,27 @@ examples/play/play
 ```
 
 ![output](https://raw.githubusercontent.com/afeefacode/cli-app/main/docs/source/_static/play.gif "output")
+
+## Build the docs
+
+### PHP API Documentation
+
+The API documentation will be served statically on GitHub and hence needs to be checked into the repository for now. There is no github action yet.
+
+Install `phpDocumentor` globally: https://docs.phpdoc.org/3.0/guide/getting-started/installing.html and name it `phpdoc`
+
+```bash
+rm -rf docs/api
+phpdoc --cache-folder=docs/build/server-api -d src -t docs/api
+```
+
+### Sphinx documentation
+
+The Sphinx documentation will be built by Read the Docs automatically. To test the docs, you may run these commands:
+
+```bash
+cd docs
+rm -rf build
+make html
+firefox build/html/index.html
+```
