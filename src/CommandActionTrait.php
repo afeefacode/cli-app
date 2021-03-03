@@ -66,7 +66,12 @@ trait CommandActionTrait
         $cwd = ($cwd ?? getcwd());
 
         $command = preg_replace_callback('/[\-\.\w\/]+/', function ($match) use ($cwd) {
-            return Path::makeRelative($match[0], $cwd);
+            $pathIsInsideCwd = Path::isBasePath($cwd, $match[0]);
+            if ($pathIsInsideCwd) {
+                return Path::makeRelative($match[0], $cwd);
+            } else {
+                return $match[0];
+            }
         }, $command);
 
         $command = preg_replace('/\n/', ' ', $command);
