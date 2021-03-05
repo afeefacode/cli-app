@@ -7,6 +7,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Webmozart\PathUtil\Path;
 
 class Command extends SymfonyCommand
 {
@@ -233,7 +234,13 @@ class Command extends SymfonyCommand
 
     protected function getCommandUsed(): string
     {
-        $args = [$_SERVER['argv'][0], $this->getName()];
+        $cmd = $_SERVER['argv'][0];
+        $cmd = Path::makeRelative($cmd, getcwd());
+        if (!preg_match('~/~', $cmd)) {
+            $cmd = './' . $cmd;
+        }
+
+        $args = [$cmd, $this->getName()];
 
         $definition = $this->getNativeDefinition();
 
@@ -255,6 +262,5 @@ class Command extends SymfonyCommand
         }
 
         return implode(' ', $args);
-
     }
 }
