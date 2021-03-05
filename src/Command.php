@@ -163,17 +163,20 @@ class Command extends SymfonyCommand
         foreach ($definition->getArguments() as $argumentName => $argument) {
             if (isset($this->selectableArgumentChoices[$argumentName])) {
                 $choices = $this->selectableArgumentChoices[$argumentName];
+                $description = $argument->getDescription();
                 if (is_callable($choices)) {
-                    $choices = $choices();
+                    $argument = new SelectableArgument();
+                    $choices($argument);
+                    $choices = $argument->choices;
+                    $description = $argument->description ?: $description;
                 }
                 if (!count($choices)) {
-                    $this->abortCommand($argument->getDescription());
+                    $this->abortCommand($description);
                 }
                 $value = $this->getArgument($argumentName);
                 if (!$value || !in_array($value, $choices)) {
-                    $value = $this->printChoice('Select ' . lcfirst($argument->getDescription()), $choices);
+                    $value = $this->printChoice('Select ' . lcfirst($description), $choices);
                     $this->selectableArgumentValues[$argumentName] = $value;
-
                 }
             }
         }

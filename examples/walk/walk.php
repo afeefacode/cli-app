@@ -4,6 +4,7 @@ require_once __DIR__ . '/../../vendor/autoload.php';
 
 use Afeefa\Component\Cli\Application;
 use Afeefa\Component\Cli\Command;
+use Afeefa\Component\Cli\SelectableArgument;
 
 class Walk extends Command
 {
@@ -15,13 +16,13 @@ class Walk extends Command
 
         $this->addSelectableArgument( // dependent argument
             'name',
-            function () {
+            function (SelectableArgument $argument) {
                 $pet = $this->getArgument('pet');
-                return $pet === 'cat'
+                $argument->choices = $pet === 'cat'
                     ? ['Kitty', 'Tiger', 'Meow']
                     : ['Laika', 'Lassie', 'Goofy'];
-            },
-            'The name of the pet'
+                $argument->description = 'The name of the ' . $pet;
+            }
         );
     }
 
