@@ -2,17 +2,15 @@
 
 namespace Afeefa\Component\Cli;
 
+use Afeefa\Component\Cli\Definitions\GroupDefinition;
+use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command as SymfonyCommand;
 
 class CommandGroup extends Command
 {
-    public $defaultCommandName = null;
-    public $noCommandsMessage = null;
-
-    public function __construct(Application $application, string $name = null, string $defaultCommandName = null, string $noCommandsMessage = null)
+    public function __construct(Application $application, string $name = null, GroupDefinition $definition)
     {
-        $this->defaultCommandName = $defaultCommandName;
-        $this->noCommandsMessage = $noCommandsMessage;
+        $this->commandDefinition = $definition;
 
         parent::__construct($application, $name);
     }
@@ -57,12 +55,15 @@ class CommandGroup extends Command
             return false;
         });
 
+        /** @var GroupDefinition */
+        $definition = $this->commandDefinition;
+
         if (empty($commands)) {
-            $this->abortCommand($this->noCommandsMessage ?: 'There is no command available in this directory');
+            $this->abortCommand($definition->getNoCommandsMessage() ?: 'There is no command available in this directory');
         }
 
-        if ($this->defaultCommandName) {
-            $scopedCommandName = $this->getName() . ':' . $this->defaultCommandName;
+        if ($definition->getDefaultCommandName()) {
+            $scopedCommandName = $this->getName() . ':' . $definition->getDefaultCommandName();
             foreach ($commands as $command) {
                 if ($command->getName() === $scopedCommandName) {
                     $this->printBullet('<info>' . $command->getName() . '</info> - ' . $command->getDescription());
@@ -95,13 +96,14 @@ class CommandGroup extends Command
     {
         /** @var Application */
         $application = $this->getApplication();
+        $Application = get_class($application);
 
-        // create new application and run command
+        // create new application instance and run command
         // we need this, since symfony/application starts with
         // a default command which is always set
         // https://github.com/symfony/symfony/issues/25632
 
-        $cli = new Application();
+        $cli = new $Application($application->getName());
         $cli->addCommands($application->all());
         $command = $cli->find($name);
 

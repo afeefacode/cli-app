@@ -2,6 +2,7 @@
 
 namespace Afeefa\Component\Cli;
 
+use Afeefa\Component\Cli\Definitions\ApplicationDefinition;
 use Symfony\Component\Console\Application as SymfonyApplication;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Input\InputInterface;
@@ -9,42 +10,21 @@ use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Output\OutputInterface;
 use Wujunze\Colors;
 
-class Application extends SymfonyApplication implements HasDefinitionsInterface
+class Application extends SymfonyApplication
 {
-    use HasDefinitionsTrait {
-        HasDefinitionsTrait::command as definitionsCommand;
-        HasDefinitionsTrait::group as definitionsGroup;
-        HasDefinitionsTrait::noCommandAvailable as definitionsNoCommandsAvailable;
-        HasDefinitionsTrait::default as definitionsDefault;
-    }
-
-    protected $BeforeCommand;
-    protected $infos = [];
+    /**
+     * @var ApplicationDefinition
+     */
+    protected $applicationDefinition;
 
     public function run(InputInterface $input = null, OutputInterface $output = null)
     {
-        $commands = $this->definitionsToCommands($this);
-
-        $indexCommand = new CommandGroup($this, 'index', null, $this->noCommandsMessage);
-        $indexCommand->setDescription('Select a command');
-        $this->add($indexCommand);
-
-        if ($this->defaultCommandName) {
-            $this->setDefaultCommand($this->defaultCommandName);
-        } else {
-            $this->setDefaultCommand($indexCommand->getName());
-        }
-
-        foreach ($commands as $command) {
-            $this->add($command);
-        }
-
         if ($this->getName()) {
             $this->printCliHeader();
         }
 
-        if ($this->BeforeCommand) {
-            $command = new $this->BeforeCommand($this);
+        if ($BeforeCommand = $this->applicationDefinition->getBeforeCommand()) {
+            $command = new $BeforeCommand($this);
             $input = new ArgvInput();
             $output = new ConsoleOutput();
             $command->run($input, $output);
@@ -53,34 +33,20 @@ class Application extends SymfonyApplication implements HasDefinitionsInterface
         return parent::run($input, $output);
     }
 
-    public function runBefore(string $Command): Application
+    /**
+     * Sets the app definition
+     */
+    public function setApplicationDefinition(ApplicationDefinition $applicationDefinition)
     {
-        $this->BeforeCommand = $Command;
+        $this->applicationDefinition = $applicationDefinition;
+
         return $this;
     }
 
-    /**
-     * Just cast to Application to be usable in fluent interface
-     */
-    public function command(string $name, $Command, string $description): Application
+    public function beforeCommand(string $Command)
     {
-        return $this->definitionsCommand($name, $Command, $description);
-    }
-
-    /**
-     * Just cast to Application to be usable in fluent interface
-     */
-    public function group(string $name, string $description, callable $callback): Application
-    {
-        return $this->definitionsGroup($name, $description, $callback);
-    }
-
-    /**
-     * Just cast to Application to be usable in fluent interface
-     */
-    public function noCommandAvailable(string $message): Application
-    {
-        return $this->definitionsNoCommandsAvailable($message);
+        $this->BeforeCommand = $Command;
+        return $this;
     }
 
     public function infos(array $infos)
@@ -89,32 +55,12 @@ class Application extends SymfonyApplication implements HasDefinitionsInterface
         return $this;
     }
 
-    function default(string $name): Application {
-        return $this->definitionsDefault($name);
-    }
-
     /**
      * Removes default app name output
      */
     public function getLongVersion()
     {
         return '';
-    }
-
-    public function dumpCommandDefinitions(): Application
-    {
-        debug_dump($this->commandDefinitions);
-        return $this;
-    }
-
-    public function dumpCommands(): Application
-    {
-        $commands = $this->definitionsToCommands($this);
-        $commands = array_map(function (Command $commmand) {
-            return $commmand->toArray();
-        }, $commands);
-        debug_dump($commands);
-        return $this;
     }
 
     private function printCliHeader(): void
@@ -130,12 +76,14 @@ class Application extends SymfonyApplication implements HasDefinitionsInterface
         echo $colors->getColoredString($this->getName(), 'brown');
         echo "\n";
 
-        if (count($this->infos)) {
+        $infos = $this->applicationDefinition->getInfos();
+
+        if (count($infos)) {
             echo $colors->getColoredString(' * ', 'light_gray');
             echo "\n";
         }
 
-        foreach ($this->infos as $key => $value) {
+        foreach ($infos as $key => $value) {
             echo $colors->getColoredString(' * ', 'light_gray');
             echo $key . ': ';
 

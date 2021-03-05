@@ -2,6 +2,9 @@
 
 namespace Afeefa\Component\Cli;
 
+use Afeefa\Component\Cli\Definitions\CommandDefinition;
+use Afeefa\Component\Cli\Definitions\GroupDefinition;
+use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command as SymfonyCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -57,6 +60,11 @@ class Command extends SymfonyCommand
      * @var Command
      */
     protected $parentCommand;
+
+    /**
+     * @var CommandDefinition
+     */
+    protected $commandDefinition;
 
     public function __construct(Application $application, string $name = null)
     {
@@ -117,6 +125,11 @@ class Command extends SymfonyCommand
         return null;
     }
 
+    public function setCommandDefinition(CommandDefinition $commandDefinition)
+    {
+        $this->commandDefinition = $commandDefinition;
+    }
+
     public function toArray()
     {
         return [
@@ -150,6 +163,23 @@ class Command extends SymfonyCommand
         return $result;
     }
 
+    private function getDefinitionsWithBeforeActions(CommandDefinition $commandDefinition): array
+    {
+        $beforeActions = [];
+
+        if ($commandDefinition->group) {
+            $beforeActions = [...$beforeActions, ...$this->getDefinitionsWithBeforeActions($commandDefinition->group)];
+        }
+
+        if ($commandDefinition instanceof GroupDefinition) {
+            if ($commandDefinition->getBeforeAction()) {
+                $beforeActions[] = $commandDefinition;
+            }
+        }
+
+        return $beforeActions;
+    }
+
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $this->output = $output;
@@ -158,6 +188,19 @@ class Command extends SymfonyCommand
         $this->io = new SymfonyStyle($input, $output);
 
         $this->printCommandStart($this->getCommandTitle());
+
+        // before action
+
+        if ($this->commandDefinition) { // exclude runtime created commands
+            $definitions = $this->getDefinitionsWithBeforeActions($this->commandDefinition);
+
+            foreach ($definitions as $definition) {
+                $this->runActionWithoutTitle(
+                    $definition->getBeforeAction(),
+                    $definition->getBeforeActionParams()
+                );
+            }
+        }
 
         // select required arguments
         $definition = $this->getNativeDefinition();
