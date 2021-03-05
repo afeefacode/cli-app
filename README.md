@@ -159,6 +159,7 @@ Command arguments are a basic cli feature. If you want to help the user by provi
 ```php
 <?php
 ...
+use Afeefa\Component\Cli\SelectableArgument;
 
 class Walk extends Command
 {
@@ -170,13 +171,13 @@ class Walk extends Command
 
         $this->addSelectableArgument( // dependent argument
             'name',
-            function () {
+            function (SelectableArgument $argument) {
                 $pet = $this->getArgument('pet');
-                return $pet === 'cat'
+                $argument->choices = $pet === 'cat'
                     ? ['Kitty', 'Tiger', 'Meow']
                     : ['Laika', 'Lassie', 'Goofy'];
-            },
-            'The name of the pet'
+                $argument->description = 'The name of the ' . $pet;
+            }
         );
     }
 
