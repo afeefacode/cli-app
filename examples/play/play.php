@@ -2,9 +2,9 @@
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-use Afeefa\Component\Cli\Application;
+use Afeefa\Component\Cli\Cli;
 use Afeefa\Component\Cli\Command;
-use Afeefa\Component\Cli\Group;
+use Afeefa\Component\Cli\Definitions\GroupDefinition as Group;
 
 class Play extends Command
 {
@@ -20,7 +20,7 @@ class Play extends Command
     }
 }
 
-(new Application('Pets App'))
+(new Cli('Pets App'))
     ->group('cat', 'Play with cat', function (Group $group) {
         $group->command('hide-seek', Play::class, 'Hide and seek');
     })

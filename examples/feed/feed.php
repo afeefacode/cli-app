@@ -3,7 +3,7 @@
 require_once __DIR__ . '/../../vendor/autoload.php';
 
 use Afeefa\Component\Cli\Action;
-use Afeefa\Component\Cli\Application;
+use Afeefa\Component\Cli\Cli;
 use Afeefa\Component\Cli\Command;
 
 class Names extends Action
@@ -37,7 +37,7 @@ class Cuddle extends Command
     }
 }
 
-(new Application('Pets App'))
+(new Cli('Pets App'))
     ->command('feed-cat', [Feed::class, 'cat'], 'Feed a cat') // 'cat' = mode
     ->command('feed-dog', [Feed::class, 'dog'], 'Feed a dog')
     ->command('cuddle-cat', Cuddle::class, 'Cuddle a cat')

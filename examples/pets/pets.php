@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-use Afeefa\Component\Cli\Application;
+use Afeefa\Component\Cli\Cli;
 use Afeefa\Component\Cli\Command;
 
 class Cats extends Command
@@ -21,7 +21,7 @@ class Dogs extends Command
     }
 }
 
-(new Application('Pets App'))
+(new Cli('Pets App'))
     ->command('cats', Cats::class, 'Show cats')
     ->command('dogs', Dogs::class, 'Show dogs')
     ->run();

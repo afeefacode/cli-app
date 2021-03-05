@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
-use Afeefa\Component\Cli\Application;
+use Afeefa\Component\Cli\Cli;
 use Afeefa\Component\Cli\Command;
 use Afeefa\Component\Cli\SelectableArgument;
 
@@ -39,7 +39,7 @@ class Walk extends Command
     }
 }
 
-(new Application('Pets App'))
+(new Cli('Pets App'))
     ->command('walk', Walk::class, 'Walk with a pet')
     ->default('walk')
     ->run();
