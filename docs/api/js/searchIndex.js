@@ -81,60 +81,35 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Afeefa-Component-Cli-Application.html#method_run"
         },                {
-            "fqsen": "\\Afeefa\\Component\\Cli\\Application\u003A\u003ArunBefore\u0028\u0029",
-            "name": "runBefore",
+            "fqsen": "\\Afeefa\\Component\\Cli\\Application\u003A\u003AsetApplicationDefinition\u0028\u0029",
+            "name": "setApplicationDefinition",
+            "summary": "Sets\u0020the\u0020app\u0020definition",
+            "url": "classes/Afeefa-Component-Cli-Application.html#method_setApplicationDefinition"
+        },                {
+            "fqsen": "\\Afeefa\\Component\\Cli\\Application\u003A\u003AbeforeCommand\u0028\u0029",
+            "name": "beforeCommand",
             "summary": "",
-            "url": "classes/Afeefa-Component-Cli-Application.html#method_runBefore"
+            "url": "classes/Afeefa-Component-Cli-Application.html#method_beforeCommand"
         },                {
-            "fqsen": "\\Afeefa\\Component\\Cli\\Application\u003A\u003Acommand\u0028\u0029",
-            "name": "command",
-            "summary": "Just\u0020cast\u0020to\u0020Application\u0020to\u0020be\u0020usable\u0020in\u0020fluent\u0020interface",
-            "url": "classes/Afeefa-Component-Cli-Application.html#method_command"
-        },                {
-            "fqsen": "\\Afeefa\\Component\\Cli\\Application\u003A\u003Agroup\u0028\u0029",
-            "name": "group",
-            "summary": "Just\u0020cast\u0020to\u0020Application\u0020to\u0020be\u0020usable\u0020in\u0020fluent\u0020interface",
-            "url": "classes/Afeefa-Component-Cli-Application.html#method_group"
-        },                {
-            "fqsen": "\\Afeefa\\Component\\Cli\\Application\u003A\u003AnoCommandAvailable\u0028\u0029",
-            "name": "noCommandAvailable",
-            "summary": "Just\u0020cast\u0020to\u0020Application\u0020to\u0020be\u0020usable\u0020in\u0020fluent\u0020interface",
-            "url": "classes/Afeefa-Component-Cli-Application.html#method_noCommandAvailable"
-        },                {
-            "fqsen": "\\Afeefa\\Component\\Cli\\Application\u003A\u003A\u0024infos",
+            "fqsen": "\\Afeefa\\Component\\Cli\\Application\u003A\u003Ainfos\u0028\u0029",
             "name": "infos",
             "summary": "",
-            "url": "classes/Afeefa-Component-Cli-Application.html#property_infos"
-        },                {
-            "fqsen": "\\Afeefa\\Component\\Cli\\Application\u003A\u003Adefault\u0028\u0029",
-            "name": "default",
-            "summary": "",
-            "url": "classes/Afeefa-Component-Cli-Application.html#method_default"
+            "url": "classes/Afeefa-Component-Cli-Application.html#method_infos"
         },                {
             "fqsen": "\\Afeefa\\Component\\Cli\\Application\u003A\u003AgetLongVersion\u0028\u0029",
             "name": "getLongVersion",
             "summary": "Removes\u0020default\u0020app\u0020name\u0020output",
             "url": "classes/Afeefa-Component-Cli-Application.html#method_getLongVersion"
         },                {
-            "fqsen": "\\Afeefa\\Component\\Cli\\Application\u003A\u003AdumpCommandDefinitions\u0028\u0029",
-            "name": "dumpCommandDefinitions",
-            "summary": "",
-            "url": "classes/Afeefa-Component-Cli-Application.html#method_dumpCommandDefinitions"
-        },                {
-            "fqsen": "\\Afeefa\\Component\\Cli\\Application\u003A\u003AdumpCommands\u0028\u0029",
-            "name": "dumpCommands",
-            "summary": "",
-            "url": "classes/Afeefa-Component-Cli-Application.html#method_dumpCommands"
-        },                {
             "fqsen": "\\Afeefa\\Component\\Cli\\Application\u003A\u003AprintCliHeader\u0028\u0029",
             "name": "printCliHeader",
             "summary": "",
             "url": "classes/Afeefa-Component-Cli-Application.html#method_printCliHeader"
         },                {
-            "fqsen": "\\Afeefa\\Component\\Cli\\Application\u003A\u003A\u0024BeforeCommand",
-            "name": "BeforeCommand",
+            "fqsen": "\\Afeefa\\Component\\Cli\\Application\u003A\u003A\u0024applicationDefinition",
+            "name": "applicationDefinition",
             "summary": "",
-            "url": "classes/Afeefa-Component-Cli-Application.html#property_BeforeCommand"
+            "url": "classes/Afeefa-Component-Cli-Application.html#property_applicationDefinition"
         },                {
             "fqsen": "\\Afeefa\\Component\\Cli\\BenchmarkUtil",
             "name": "BenchmarkUtil",
@@ -170,6 +145,11 @@ Search.appendIndex(
             "name": "lastTime",
             "summary": "",
             "url": "classes/Afeefa-Component-Cli-Benchmark.html#property_lastTime"
+        },                {
+            "fqsen": "\\Afeefa\\Component\\Cli\\Cli",
+            "name": "Cli",
+            "summary": "",
+            "url": "classes/Afeefa-Component-Cli-Cli.html"
         },                {
             "fqsen": "\\Afeefa\\Component\\Cli\\Command",
             "name": "Command",
@@ -226,6 +206,11 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Afeefa-Component-Cli-Command.html#method_getLocalParentName"
         },                {
+            "fqsen": "\\Afeefa\\Component\\Cli\\Command\u003A\u003AsetCommandDefinition\u0028\u0029",
+            "name": "setCommandDefinition",
+            "summary": "",
+            "url": "classes/Afeefa-Component-Cli-Command.html#method_setCommandDefinition"
+        },                {
             "fqsen": "\\Afeefa\\Component\\Cli\\Command\u003A\u003AtoArray\u0028\u0029",
             "name": "toArray",
             "summary": "",
@@ -245,6 +230,11 @@ Search.appendIndex(
             "name": "run",
             "summary": "",
             "url": "classes/Afeefa-Component-Cli-Command.html#method_run"
+        },                {
+            "fqsen": "\\Afeefa\\Component\\Cli\\Command\u003A\u003AgetDefinitionsWithBeforeActions\u0028\u0029",
+            "name": "getDefinitionsWithBeforeActions",
+            "summary": "",
+            "url": "classes/Afeefa-Component-Cli-Command.html#method_getDefinitionsWithBeforeActions"
         },                {
             "fqsen": "\\Afeefa\\Component\\Cli\\Command\u003A\u003Aexecute\u0028\u0029",
             "name": "execute",
@@ -320,6 +310,11 @@ Search.appendIndex(
             "name": "parentCommand",
             "summary": "",
             "url": "classes/Afeefa-Component-Cli-Command.html#property_parentCommand"
+        },                {
+            "fqsen": "\\Afeefa\\Component\\Cli\\Command\u003A\u003A\u0024commandDefinition",
+            "name": "commandDefinition",
+            "summary": "",
+            "url": "classes/Afeefa-Component-Cli-Command.html#property_commandDefinition"
         },                {
             "fqsen": "\\Afeefa\\Component\\Cli\\CommandActionTrait",
             "name": "CommandActionTrait",
@@ -481,140 +476,220 @@ Search.appendIndex(
             "summary": "",
             "url": "classes/Afeefa-Component-Cli-CommandGroup.html#method_runCommand"
         },                {
-            "fqsen": "\\Afeefa\\Component\\Cli\\CommandGroup\u003A\u003A\u0024defaultCommandName",
-            "name": "defaultCommandName",
+            "fqsen": "\\Afeefa\\Component\\Cli\\Definitions\\ApplicationDefinition",
+            "name": "ApplicationDefinition",
             "summary": "",
-            "url": "classes/Afeefa-Component-Cli-CommandGroup.html#property_defaultCommandName"
+            "url": "classes/Afeefa-Component-Cli-Definitions-ApplicationDefinition.html"
         },                {
-            "fqsen": "\\Afeefa\\Component\\Cli\\CommandGroup\u003A\u003A\u0024noCommandsMessage",
-            "name": "noCommandsMessage",
+            "fqsen": "\\Afeefa\\Component\\Cli\\Definitions\\ApplicationDefinition\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
             "summary": "",
-            "url": "classes/Afeefa-Component-Cli-CommandGroup.html#property_noCommandsMessage"
+            "url": "classes/Afeefa-Component-Cli-Definitions-ApplicationDefinition.html#method___construct"
         },                {
-            "fqsen": "\\Afeefa\\Component\\Cli\\Definition",
-            "name": "Definition",
+            "fqsen": "\\Afeefa\\Component\\Cli\\Definitions\\ApplicationDefinition\u003A\u003Acommand\u0028\u0029",
+            "name": "command",
+            "summary": "Add\u0020a\u0020command",
+            "url": "classes/Afeefa-Component-Cli-Definitions-ApplicationDefinition.html#method_command"
+        },                {
+            "fqsen": "\\Afeefa\\Component\\Cli\\Definitions\\ApplicationDefinition\u003A\u003Agroup\u0028\u0029",
+            "name": "group",
+            "summary": "Add\u0020a\u0020group",
+            "url": "classes/Afeefa-Component-Cli-Definitions-ApplicationDefinition.html#method_group"
+        },                {
+            "fqsen": "\\Afeefa\\Component\\Cli\\Definitions\\ApplicationDefinition\u003A\u003AbeforeAction\u0028\u0029",
+            "name": "beforeAction",
+            "summary": "Define\u0020an\u0020action\u0020to\u0020run\u0020before\u0020any\u0020command\u0020of\u0020this\u0020group",
+            "url": "classes/Afeefa-Component-Cli-Definitions-ApplicationDefinition.html#method_beforeAction"
+        },                {
+            "fqsen": "\\Afeefa\\Component\\Cli\\Definitions\\ApplicationDefinition\u003A\u003AnoCommandAvailable\u0028\u0029",
+            "name": "noCommandAvailable",
+            "summary": "Set\u0020a\u0020message\u0020shown\u0020if\u0020no\u0020command\u0020is\u0020available\u0020in\u0020this\u0020group",
+            "url": "classes/Afeefa-Component-Cli-Definitions-ApplicationDefinition.html#method_noCommandAvailable"
+        },                {
+            "fqsen": "\\Afeefa\\Component\\Cli\\Definitions\\ApplicationDefinition\u003A\u003Adefault\u0028\u0029",
+            "name": "default",
+            "summary": "Set\u0020a\u0020command\u0020of\u0020this\u0020group\u0020to\u0020be\u0020run\u0020instead\u0020of\u0020the\u0020index",
+            "url": "classes/Afeefa-Component-Cli-Definitions-ApplicationDefinition.html#method_default"
+        },                {
+            "fqsen": "\\Afeefa\\Component\\Cli\\Definitions\\ApplicationDefinition\u003A\u003AbeforeCommand\u0028\u0029",
+            "name": "beforeCommand",
+            "summary": "Define\u0020a\u0020command\u0020to\u0020run\u0020before\u0020any\u0020command\u0020of\u0020this\u0020app",
+            "url": "classes/Afeefa-Component-Cli-Definitions-ApplicationDefinition.html#method_beforeCommand"
+        },                {
+            "fqsen": "\\Afeefa\\Component\\Cli\\Definitions\\ApplicationDefinition\u003A\u003AgetBeforeCommand\u0028\u0029",
+            "name": "getBeforeCommand",
+            "summary": "Return\u0020the\u0020before\u0020command",
+            "url": "classes/Afeefa-Component-Cli-Definitions-ApplicationDefinition.html#method_getBeforeCommand"
+        },                {
+            "fqsen": "\\Afeefa\\Component\\Cli\\Definitions\\ApplicationDefinition\u003A\u003A\u0024infos",
+            "name": "infos",
+            "summary": "Infos\u0020shown\u0020in\u0020CLI\u0020header",
+            "url": "classes/Afeefa-Component-Cli-Definitions-ApplicationDefinition.html#property_infos"
+        },                {
+            "fqsen": "\\Afeefa\\Component\\Cli\\Definitions\\ApplicationDefinition\u003A\u003AgetInfos\u0028\u0029",
+            "name": "getInfos",
+            "summary": "Get\u0020the\u0020cli\u0020header\u0020infos",
+            "url": "classes/Afeefa-Component-Cli-Definitions-ApplicationDefinition.html#method_getInfos"
+        },                {
+            "fqsen": "\\Afeefa\\Component\\Cli\\Definitions\\ApplicationDefinition\u003A\u003Arun\u0028\u0029",
+            "name": "run",
             "summary": "",
-            "url": "classes/Afeefa-Component-Cli-Definition.html"
+            "url": "classes/Afeefa-Component-Cli-Definitions-ApplicationDefinition.html#method_run"
         },                {
-            "fqsen": "\\Afeefa\\Component\\Cli\\Definition\u003A\u003A\u0024name",
+            "fqsen": "\\Afeefa\\Component\\Cli\\Definitions\\ApplicationDefinition\u003A\u003AdumpCommandDefinitions\u0028\u0029",
+            "name": "dumpCommandDefinitions",
+            "summary": "",
+            "url": "classes/Afeefa-Component-Cli-Definitions-ApplicationDefinition.html#method_dumpCommandDefinitions"
+        },                {
+            "fqsen": "\\Afeefa\\Component\\Cli\\Definitions\\ApplicationDefinition\u003A\u003AdumpCommands\u0028\u0029",
+            "name": "dumpCommands",
+            "summary": "",
+            "url": "classes/Afeefa-Component-Cli-Definitions-ApplicationDefinition.html#method_dumpCommands"
+        },                {
+            "fqsen": "\\Afeefa\\Component\\Cli\\Definitions\\ApplicationDefinition\u003A\u003AgetApplicationClass\u0028\u0029",
+            "name": "getApplicationClass",
+            "summary": "",
+            "url": "classes/Afeefa-Component-Cli-Definitions-ApplicationDefinition.html#method_getApplicationClass"
+        },                {
+            "fqsen": "\\Afeefa\\Component\\Cli\\Definitions\\ApplicationDefinition\u003A\u003A\u0024BeforeCommand",
+            "name": "BeforeCommand",
+            "summary": "Command\u0020to\u0020run\u0020before\u0020any\u0020command\u0020of\u0020this\u0020app",
+            "url": "classes/Afeefa-Component-Cli-Definitions-ApplicationDefinition.html#property_BeforeCommand"
+        },                {
+            "fqsen": "\\Afeefa\\Component\\Cli\\Definitions\\CommandDefinition",
+            "name": "CommandDefinition",
+            "summary": "",
+            "url": "classes/Afeefa-Component-Cli-Definitions-CommandDefinition.html"
+        },                {
+            "fqsen": "\\Afeefa\\Component\\Cli\\Definitions\\CommandDefinition\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "",
+            "url": "classes/Afeefa-Component-Cli-Definitions-CommandDefinition.html#method_toArray"
+        },                {
+            "fqsen": "\\Afeefa\\Component\\Cli\\Definitions\\CommandDefinition\u003A\u003A\u0024name",
             "name": "name",
             "summary": "",
-            "url": "classes/Afeefa-Component-Cli-Definition.html#property_name"
+            "url": "classes/Afeefa-Component-Cli-Definitions-CommandDefinition.html#property_name"
         },                {
-            "fqsen": "\\Afeefa\\Component\\Cli\\Definition\u003A\u003A\u0024Command",
+            "fqsen": "\\Afeefa\\Component\\Cli\\Definitions\\CommandDefinition\u003A\u003A\u0024Command",
             "name": "Command",
             "summary": "",
-            "url": "classes/Afeefa-Component-Cli-Definition.html#property_Command"
+            "url": "classes/Afeefa-Component-Cli-Definitions-CommandDefinition.html#property_Command"
         },                {
-            "fqsen": "\\Afeefa\\Component\\Cli\\Definition\u003A\u003A\u0024description",
-            "name": "description",
-            "summary": "",
-            "url": "classes/Afeefa-Component-Cli-Definition.html#property_description"
-        },                {
-            "fqsen": "\\Afeefa\\Component\\Cli\\Definition\u003A\u003A\u0024commandMode",
+            "fqsen": "\\Afeefa\\Component\\Cli\\Definitions\\CommandDefinition\u003A\u003A\u0024commandMode",
             "name": "commandMode",
             "summary": "",
-            "url": "classes/Afeefa-Component-Cli-Definition.html#property_commandMode"
+            "url": "classes/Afeefa-Component-Cli-Definitions-CommandDefinition.html#property_commandMode"
         },                {
-            "fqsen": "\\Afeefa\\Component\\Cli\\Group",
-            "name": "Group",
+            "fqsen": "\\Afeefa\\Component\\Cli\\Definitions\\CommandDefinition\u003A\u003A\u0024description",
+            "name": "description",
             "summary": "",
-            "url": "classes/Afeefa-Component-Cli-Group.html"
+            "url": "classes/Afeefa-Component-Cli-Definitions-CommandDefinition.html#property_description"
         },                {
-            "fqsen": "\\Afeefa\\Component\\Cli\\HasDefinitionsInterface",
-            "name": "HasDefinitionsInterface",
-            "summary": "",
-            "url": "classes/Afeefa-Component-Cli-HasDefinitionsInterface.html"
-        },                {
-            "fqsen": "\\Afeefa\\Component\\Cli\\HasDefinitionsInterface\u003A\u003Acommand\u0028\u0029",
-            "name": "command",
-            "summary": "",
-            "url": "classes/Afeefa-Component-Cli-HasDefinitionsInterface.html#method_command"
-        },                {
-            "fqsen": "\\Afeefa\\Component\\Cli\\HasDefinitionsInterface\u003A\u003Agroup\u0028\u0029",
+            "fqsen": "\\Afeefa\\Component\\Cli\\Definitions\\CommandDefinition\u003A\u003A\u0024group",
             "name": "group",
             "summary": "",
-            "url": "classes/Afeefa-Component-Cli-HasDefinitionsInterface.html#method_group"
+            "url": "classes/Afeefa-Component-Cli-Definitions-CommandDefinition.html#property_group"
         },                {
-            "fqsen": "\\Afeefa\\Component\\Cli\\HasDefinitionsInterface\u003A\u003Adefault\u0028\u0029",
-            "name": "default",
+            "fqsen": "\\Afeefa\\Component\\Cli\\Definitions\\GroupDefinition",
+            "name": "GroupDefinition",
             "summary": "",
-            "url": "classes/Afeefa-Component-Cli-HasDefinitionsInterface.html#method_default"
+            "url": "classes/Afeefa-Component-Cli-Definitions-GroupDefinition.html"
         },                {
-            "fqsen": "\\Afeefa\\Component\\Cli\\HasDefinitionsInterface\u003A\u003AnoCommandAvailable\u0028\u0029",
-            "name": "noCommandAvailable",
-            "summary": "",
-            "url": "classes/Afeefa-Component-Cli-HasDefinitionsInterface.html#method_noCommandAvailable"
-        },                {
-            "fqsen": "\\Afeefa\\Component\\Cli\\HasDefinitionsInterface\u003A\u003AdefinitionsToCommands\u0028\u0029",
-            "name": "definitionsToCommands",
-            "summary": "",
-            "url": "classes/Afeefa-Component-Cli-HasDefinitionsInterface.html#method_definitionsToCommands"
-        },                {
-            "fqsen": "\\Afeefa\\Component\\Cli\\HasDefinitionsInterface\u003A\u003AgetDefaultCommandName\u0028\u0029",
-            "name": "getDefaultCommandName",
-            "summary": "",
-            "url": "classes/Afeefa-Component-Cli-HasDefinitionsInterface.html#method_getDefaultCommandName"
-        },                {
-            "fqsen": "\\Afeefa\\Component\\Cli\\HasDefinitionsInterface\u003A\u003AgetNoCommandsMessage\u0028\u0029",
-            "name": "getNoCommandsMessage",
-            "summary": "",
-            "url": "classes/Afeefa-Component-Cli-HasDefinitionsInterface.html#method_getNoCommandsMessage"
-        },                {
-            "fqsen": "\\Afeefa\\Component\\Cli\\HasDefinitionsTrait",
-            "name": "HasDefinitionsTrait",
-            "summary": "",
-            "url": "classes/Afeefa-Component-Cli-HasDefinitionsTrait.html"
-        },                {
-            "fqsen": "\\Afeefa\\Component\\Cli\\HasDefinitionsTrait\u003A\u003Acommand\u0028\u0029",
+            "fqsen": "\\Afeefa\\Component\\Cli\\Definitions\\GroupDefinition\u003A\u003Acommand\u0028\u0029",
             "name": "command",
-            "summary": "",
-            "url": "classes/Afeefa-Component-Cli-HasDefinitionsTrait.html#method_command"
+            "summary": "Add\u0020a\u0020command",
+            "url": "classes/Afeefa-Component-Cli-Definitions-GroupDefinition.html#method_command"
         },                {
-            "fqsen": "\\Afeefa\\Component\\Cli\\HasDefinitionsTrait\u003A\u003Agroup\u0028\u0029",
+            "fqsen": "\\Afeefa\\Component\\Cli\\Definitions\\GroupDefinition\u003A\u003Agroup\u0028\u0029",
             "name": "group",
-            "summary": "",
-            "url": "classes/Afeefa-Component-Cli-HasDefinitionsTrait.html#method_group"
+            "summary": "Add\u0020a\u0020group",
+            "url": "classes/Afeefa-Component-Cli-Definitions-GroupDefinition.html#method_group"
         },                {
-            "fqsen": "\\Afeefa\\Component\\Cli\\HasDefinitionsTrait\u003A\u003AnoCommandAvailable\u0028\u0029",
+            "fqsen": "\\Afeefa\\Component\\Cli\\Definitions\\GroupDefinition\u003A\u003AbeforeAction\u0028\u0029",
+            "name": "beforeAction",
+            "summary": "Define\u0020an\u0020action\u0020to\u0020run\u0020before\u0020any\u0020command\u0020of\u0020this\u0020group",
+            "url": "classes/Afeefa-Component-Cli-Definitions-GroupDefinition.html#method_beforeAction"
+        },                {
+            "fqsen": "\\Afeefa\\Component\\Cli\\Definitions\\GroupDefinition\u003A\u003AgetBeforeAction\u0028\u0029",
+            "name": "getBeforeAction",
+            "summary": "Return\u0020the\u0020before\u0020action",
+            "url": "classes/Afeefa-Component-Cli-Definitions-GroupDefinition.html#method_getBeforeAction"
+        },                {
+            "fqsen": "\\Afeefa\\Component\\Cli\\Definitions\\GroupDefinition\u003A\u003AgetBeforeActionParams\u0028\u0029",
+            "name": "getBeforeActionParams",
+            "summary": "Return\u0020the\u0020before\u0020action\u0020params",
+            "url": "classes/Afeefa-Component-Cli-Definitions-GroupDefinition.html#method_getBeforeActionParams"
+        },                {
+            "fqsen": "\\Afeefa\\Component\\Cli\\Definitions\\GroupDefinition\u003A\u003AnoCommandAvailable\u0028\u0029",
             "name": "noCommandAvailable",
-            "summary": "",
-            "url": "classes/Afeefa-Component-Cli-HasDefinitionsTrait.html#method_noCommandAvailable"
+            "summary": "Set\u0020a\u0020message\u0020shown\u0020if\u0020no\u0020command\u0020is\u0020available\u0020in\u0020this\u0020group",
+            "url": "classes/Afeefa-Component-Cli-Definitions-GroupDefinition.html#method_noCommandAvailable"
         },                {
-            "fqsen": "\\Afeefa\\Component\\Cli\\HasDefinitionsTrait\u003A\u003Adefault\u0028\u0029",
-            "name": "default",
-            "summary": "",
-            "url": "classes/Afeefa-Component-Cli-HasDefinitionsTrait.html#method_default"
-        },                {
-            "fqsen": "\\Afeefa\\Component\\Cli\\HasDefinitionsTrait\u003A\u003AdefinitionsToCommands\u0028\u0029",
-            "name": "definitionsToCommands",
-            "summary": "",
-            "url": "classes/Afeefa-Component-Cli-HasDefinitionsTrait.html#method_definitionsToCommands"
-        },                {
-            "fqsen": "\\Afeefa\\Component\\Cli\\HasDefinitionsTrait\u003A\u003AgetNoCommandsMessage\u0028\u0029",
+            "fqsen": "\\Afeefa\\Component\\Cli\\Definitions\\GroupDefinition\u003A\u003AgetNoCommandsMessage\u0028\u0029",
             "name": "getNoCommandsMessage",
-            "summary": "",
-            "url": "classes/Afeefa-Component-Cli-HasDefinitionsTrait.html#method_getNoCommandsMessage"
+            "summary": "Returns\u0020the\u0020no\u0020commands\u0020available\u0020message",
+            "url": "classes/Afeefa-Component-Cli-Definitions-GroupDefinition.html#method_getNoCommandsMessage"
         },                {
-            "fqsen": "\\Afeefa\\Component\\Cli\\HasDefinitionsTrait\u003A\u003AgetDefaultCommandName\u0028\u0029",
+            "fqsen": "\\Afeefa\\Component\\Cli\\Definitions\\GroupDefinition\u003A\u003Adefault\u0028\u0029",
+            "name": "default",
+            "summary": "Set\u0020a\u0020command\u0020of\u0020this\u0020group\u0020to\u0020be\u0020run\u0020instead\u0020of\u0020the\u0020index",
+            "url": "classes/Afeefa-Component-Cli-Definitions-GroupDefinition.html#method_default"
+        },                {
+            "fqsen": "\\Afeefa\\Component\\Cli\\Definitions\\GroupDefinition\u003A\u003AgetDefaultCommandName\u0028\u0029",
             "name": "getDefaultCommandName",
-            "summary": "",
-            "url": "classes/Afeefa-Component-Cli-HasDefinitionsTrait.html#method_getDefaultCommandName"
+            "summary": "Returns\u0020the\u0020default\u0020command\u0020name",
+            "url": "classes/Afeefa-Component-Cli-Definitions-GroupDefinition.html#method_getDefaultCommandName"
         },                {
-            "fqsen": "\\Afeefa\\Component\\Cli\\HasDefinitionsTrait\u003A\u003A\u0024commandDefinitions",
-            "name": "commandDefinitions",
-            "summary": "",
-            "url": "classes/Afeefa-Component-Cli-HasDefinitionsTrait.html#property_commandDefinitions"
+            "fqsen": "\\Afeefa\\Component\\Cli\\Definitions\\GroupDefinition\u003A\u003AdefinitionsToCommands\u0028\u0029",
+            "name": "definitionsToCommands",
+            "summary": "Converts\u0020command\u0020definitions\u0020to\u0020actual\u0020commands",
+            "url": "classes/Afeefa-Component-Cli-Definitions-GroupDefinition.html#method_definitionsToCommands"
         },                {
-            "fqsen": "\\Afeefa\\Component\\Cli\\HasDefinitionsTrait\u003A\u003A\u0024noCommandsMessage",
+            "fqsen": "\\Afeefa\\Component\\Cli\\Definitions\\GroupDefinition\u003A\u003AtoArray\u0028\u0029",
+            "name": "toArray",
+            "summary": "",
+            "url": "classes/Afeefa-Component-Cli-Definitions-GroupDefinition.html#method_toArray"
+        },                {
+            "fqsen": "\\Afeefa\\Component\\Cli\\Definitions\\GroupDefinition\u003A\u003A\u0024definitions",
+            "name": "definitions",
+            "summary": "List\u0020of\u0020sub\u0020commands\u0020\/\u0020groups",
+            "url": "classes/Afeefa-Component-Cli-Definitions-GroupDefinition.html#property_definitions"
+        },                {
+            "fqsen": "\\Afeefa\\Component\\Cli\\Definitions\\GroupDefinition\u003A\u003A\u0024BeforeAction",
+            "name": "BeforeAction",
+            "summary": "Action\u0020to\u0020run\u0020before\u0020any\u0020command\u0020of\u0020this\u0020group",
+            "url": "classes/Afeefa-Component-Cli-Definitions-GroupDefinition.html#property_BeforeAction"
+        },                {
+            "fqsen": "\\Afeefa\\Component\\Cli\\Definitions\\GroupDefinition\u003A\u003A\u0024beforeActionParams",
+            "name": "beforeActionParams",
+            "summary": "Params\u0020for\u0020the\u0020before\u0020action",
+            "url": "classes/Afeefa-Component-Cli-Definitions-GroupDefinition.html#property_beforeActionParams"
+        },                {
+            "fqsen": "\\Afeefa\\Component\\Cli\\Definitions\\GroupDefinition\u003A\u003A\u0024noCommandsMessage",
             "name": "noCommandsMessage",
-            "summary": "",
-            "url": "classes/Afeefa-Component-Cli-HasDefinitionsTrait.html#property_noCommandsMessage"
+            "summary": "Message\u0020shown\u0020if\u0020no\u0020commands\u0020are\u0020available",
+            "url": "classes/Afeefa-Component-Cli-Definitions-GroupDefinition.html#property_noCommandsMessage"
         },                {
-            "fqsen": "\\Afeefa\\Component\\Cli\\HasDefinitionsTrait\u003A\u003A\u0024defaultCommandName",
+            "fqsen": "\\Afeefa\\Component\\Cli\\Definitions\\GroupDefinition\u003A\u003A\u0024defaultCommandName",
             "name": "defaultCommandName",
+            "summary": "Name\u0020of\u0020a\u0020command\u0020to\u0020be\u0020run\u0020as\u0020default\u0020for\u0020this\u0020group",
+            "url": "classes/Afeefa-Component-Cli-Definitions-GroupDefinition.html#property_defaultCommandName"
+        },                {
+            "fqsen": "\\Afeefa\\Component\\Cli\\SelectableArgument",
+            "name": "SelectableArgument",
             "summary": "",
-            "url": "classes/Afeefa-Component-Cli-HasDefinitionsTrait.html#property_defaultCommandName"
+            "url": "classes/Afeefa-Component-Cli-SelectableArgument.html"
+        },                {
+            "fqsen": "\\Afeefa\\Component\\Cli\\SelectableArgument\u003A\u003A\u0024choices",
+            "name": "choices",
+            "summary": "",
+            "url": "classes/Afeefa-Component-Cli-SelectableArgument.html#property_choices"
+        },                {
+            "fqsen": "\\Afeefa\\Component\\Cli\\SelectableArgument\u003A\u003A\u0024description",
+            "name": "description",
+            "summary": "",
+            "url": "classes/Afeefa-Component-Cli-SelectableArgument.html#property_description"
         },                {
             "fqsen": "\\",
             "name": "\\",
@@ -635,5 +710,10 @@ Search.appendIndex(
             "name": "Afeefa",
             "summary": "",
             "url": "namespaces/afeefa.html"
+        },                {
+            "fqsen": "\\Afeefa\\Component\\Cli\\Definitions",
+            "name": "Definitions",
+            "summary": "",
+            "url": "namespaces/afeefa-component-cli-definitions.html"
         }            ]
 );
