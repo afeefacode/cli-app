@@ -262,11 +262,11 @@ class Command extends SymfonyCommand
             $commandDuration = preg_replace("/.+\+/", '', $diffCommand);
 
             $this->io->newLine();
-            $this->printText("<info>OK: $this->taskInfo</info>");
+            $this->printText("<info>OK: {$this->taskInfo}</info>");
 
             $this->printText($this->getCommandUsed());
 
-            $text = "time finish: $commandFinishTime, command duration: $commandDuration sec";
+            $text = "time finish: {$commandFinishTime}, command duration: {$commandDuration} sec";
             $this->printText($text);
 
             $this->printText(str_repeat('-', strlen($text)));
@@ -304,6 +304,14 @@ class Command extends SymfonyCommand
             }
         }
 
-        return implode(' ', $args);
+        $givenArgs = [];
+        foreach ($args as $arg) {
+            if (is_array($arg)) {
+                $arg = implode(',', $arg);
+            }
+            $givenArgs[] = $arg;
+        }
+
+        return implode(' ', $givenArgs);
     }
 }

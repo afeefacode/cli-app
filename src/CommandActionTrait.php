@@ -28,7 +28,7 @@ trait CommandActionTrait
 
     protected function printSubActionTitle(string $title)
     {
-        $this->printText("<options=underscore>$title</>");
+        $this->printText("<options=underscore>{$title}</>");
         $this->printNewLine();
     }
 
@@ -44,12 +44,12 @@ trait CommandActionTrait
 
     protected function printInfo(string $text)
     {
-        $this->io->text("\xF0\x9F\x9B\x88 $text");
+        $this->io->text("\xF0\x9F\x9B\x88 {$text}");
     }
 
     protected function printBullet(string $text)
     {
-        $this->io->text("* $text");
+        $this->io->text("* {$text}");
         $this->printNewLine();
     }
 
@@ -69,9 +69,8 @@ trait CommandActionTrait
             $pathIsInsideCwd = Path::isBasePath($cwd, $match[0]);
             if ($pathIsInsideCwd) {
                 return Path::makeRelative($match[0], $cwd);
-            } else {
-                return $match[0];
             }
+            return $match[0];
         }, $command);
 
         $command = preg_replace('/\n/', ' ', $command);
@@ -92,12 +91,12 @@ trait CommandActionTrait
 
         $spaces = str_repeat(' ', $maxTextLength + 4);
 
-        $this->printText("<bg=red;fg=white>$spaces</>");
+        $this->printText("<bg=red;fg=white>{$spaces}</>");
         foreach ($textArray as $text) {
             $spacesEnd = str_repeat(' ', $maxTextLength + 2 - strlen($text));
-            $this->printText("<bg=red;fg=white>  $text$spacesEnd</>");
+            $this->printText("<bg=red;fg=white>  {$text}{$spacesEnd}</>");
         }
-        $this->printText("<bg=red;fg=white>$spaces</>");
+        $this->printText("<bg=red;fg=white>{$spaces}</>");
 
         $this->printNewLine();
     }
@@ -132,12 +131,12 @@ trait CommandActionTrait
     {
         $text = $text ?: $this->taskInfo;
 
-        $this->printText("<fg=red>Abort: $text</>");
+        $this->printText("<fg=red>Abort: {$text}</>");
         $this->printNewLine();
         exit;
     }
 
-    /**
+    /*
      * Process
      */
 
@@ -197,7 +196,7 @@ trait CommandActionTrait
         return $process->getOutput();
     }
 
-    /**
+    /*
      * Action
      */
 
@@ -230,10 +229,10 @@ trait CommandActionTrait
 
         chdir($currentDir);
 
-        return $result;
+        return $result ?: 0;
     }
 
-    /**
+    /*
      * File replace
      */
 
