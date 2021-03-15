@@ -307,7 +307,7 @@ class Command extends SymfonyCommand
         $givenArgs = [];
         foreach ($args as $arg) {
             if (is_array($arg)) {
-                $arg = implode(',', $arg);
+                $arg = implode(' ', $arg);
             }
             $givenArgs[] = $arg;
         }
