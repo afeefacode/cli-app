@@ -14,8 +14,8 @@
     "require": {
         "php": ">=7.4",
         "afeefa/debug-dump-log": "^0",
-        "symfony/console": "v6.1",
-        "symfony/process": "v6.1",
+        "symfony/console": "v5.4",
+        "symfony/process": "v5.4",
         "twig/twig": "^v3.4",
         "webmozart/path-util": "^2.3",
         "wujunze/php-cli-color": "^v2.4"
