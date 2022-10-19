@@ -154,7 +154,7 @@ class Command extends SymfonyCommand
         return $this->input->getOption($key) ?: $default;
     }
 
-    public function run(InputInterface $input, OutputInterface $output)
+    public function run(InputInterface $input, OutputInterface $output): int
     {
         $result = parent::run($input, $output);
 

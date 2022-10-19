@@ -17,7 +17,7 @@ class Application extends SymfonyApplication
      */
     protected $applicationDefinition;
 
-    public function run(InputInterface $input = null, OutputInterface $output = null)
+    public function run(InputInterface $input = null, OutputInterface $output = null): int
     {
         if ($this->getName()) {
             $this->printCliHeader();
@@ -96,7 +96,6 @@ class Application extends SymfonyApplication
                 }
             } else {
                 echo $colors->getColoredString($value, 'green') . "\n";
-
             }
         }
 
