@@ -2,6 +2,7 @@
 
 namespace Afeefa\Component\Cli;
 
+use Symfony\Component\Console\Question\ChoiceQuestion;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
@@ -104,6 +105,14 @@ trait CommandActionTrait
     protected function printChoice(...$arguments)
     {
         return $this->io->choice(...$arguments);
+    }
+
+    protected function printMultichoice(...$arguments)
+    {
+        $q = new ChoiceQuestion(...$arguments);
+        $q->setMultiselect(true);
+        $result = $this->io->askQuestion($q);
+        return array_unique($result);
     }
 
     protected function printQuestion(string $question, $default = null)
