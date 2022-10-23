@@ -4,11 +4,11 @@ namespace Afeefa\Component\Cli;
 
 use Symfony\Component\Console\Question\ChoiceQuestion;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\Filesystem\Path;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 use Twig\Environment;
 use Twig\Loader\ArrayLoader;
-use Webmozart\PathUtil\Path;
 
 trait CommandActionTrait
 {
