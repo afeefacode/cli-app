@@ -17,6 +17,8 @@ class Application extends SymfonyApplication
      */
     protected $applicationDefinition;
 
+    protected array $infos;
+
     public function run(InputInterface $input = null, OutputInterface $output = null): int
     {
         if ($this->getName()) {
