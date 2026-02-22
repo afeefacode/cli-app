@@ -66,7 +66,7 @@ class Command extends SymfonyCommand
      */
     protected $commandDefinition;
 
-    public function __construct(Application $application, string $name = null)
+    public function __construct(Application $application, ?string $name = null)
     {
         $this->setApplication($application);
 
@@ -104,7 +104,7 @@ class Command extends SymfonyCommand
         return $this->parentCommand;
     }
 
-    public function setParentCommand(Command $parentCommand = null)
+    public function setParentCommand(?Command $parentCommand = null)
     {
         $this->parentCommand = $parentCommand;
 
@@ -180,7 +180,7 @@ class Command extends SymfonyCommand
         return $beforeActions;
     }
 
-    public function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $this->output = $output;
         $this->input = $input;

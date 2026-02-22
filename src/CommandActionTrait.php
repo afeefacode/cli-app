@@ -149,24 +149,24 @@ trait CommandActionTrait
      * Process
      */
 
-    protected function runProcess($command, string $cwd = null, array $env = [])
+    protected function runProcess($command, ?string $cwd = null, array $env = [])
     {
         $this->doRunProcess($command, $cwd, $env);
     }
 
-    protected function runProcesses($commands, string $cwd = null, array $env = [])
+    protected function runProcesses($commands, ?string $cwd = null, array $env = [])
     {
         foreach ($commands as $command) {
             $this->doRunProcess($command, $cwd, $env);
         }
     }
 
-    protected function runProcessAndGetContents($command, string $cwd = null, array $env = []): string
+    protected function runProcessAndGetContents($command, ?string $cwd = null, array $env = []): string
     {
         return $this->doRunProcess($command, $cwd, $env, true);
     }
 
-    private function doRunProcess($command, string $cwd = null, array $env = [], $hideOutput = false): string
+    private function doRunProcess($command, ?string $cwd = null, array $env = [], $hideOutput = false): string
     {
         if (is_string($command)) {
             $command = preg_replace("/\n+/", ' ', $command);
@@ -209,22 +209,22 @@ trait CommandActionTrait
      * Action
      */
 
-    protected function runAction(string $Action, array $args = [], string $cwd = null)
+    protected function runAction(string $Action, array $args = [], ?string $cwd = null)
     {
         return $this->doRunAction($Action, $args, $cwd, Action::TITLE_NORMAL);
     }
 
-    protected function runSubAction(string $Action, array $args = [], string $cwd = null)
+    protected function runSubAction(string $Action, array $args = [], ?string $cwd = null)
     {
         return $this->doRunAction($Action, $args, $cwd, Action::TITLE_SMALL);
     }
 
-    protected function runActionWithoutTitle(string $Action, array $args = [], string $cwd = null)
+    protected function runActionWithoutTitle(string $Action, array $args = [], ?string $cwd = null)
     {
         return $this->doRunAction($Action, $args, $cwd, Action::TITLE_HIDDEN);
     }
 
-    private function doRunAction(string $Action, array $args, string $cwd = null, $titleFormat = Action::TITLE_NORMAL)
+    private function doRunAction(string $Action, array $args, ?string $cwd = null, $titleFormat = Action::TITLE_NORMAL)
     {
         $currentDir = getcwd();
 

@@ -45,7 +45,7 @@ class ApplicationDefinition extends GroupDefinition
         return parent::noCommandAvailable($message);
     }
 
-    function default(string $name): ApplicationDefinition {
+    public function default(string $name): ApplicationDefinition {
         return parent::default($name);
     }
 

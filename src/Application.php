@@ -19,7 +19,9 @@ class Application extends SymfonyApplication
 
     protected array $infos;
 
-    public function run(InputInterface $input = null, OutputInterface $output = null): int
+    protected string $BeforeCommand;
+
+    public function run(?InputInterface $input = null, ?OutputInterface $output = null): int
     {
         if ($this->getName()) {
             $this->printCliHeader();

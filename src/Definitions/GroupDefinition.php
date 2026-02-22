@@ -132,7 +132,7 @@ class GroupDefinition extends CommandDefinition
     /**
      * Set a command of this group to be run instead of the index
      */
-    function default(string $name): GroupDefinition {
+    public function default(string $name): GroupDefinition {
         $this->defaultCommandName = $name;
         return $this;
     }
