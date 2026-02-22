@@ -60,7 +60,7 @@ class Application extends SymfonyApplication
     /**
      * Removes default app name output
      */
-    public function getLongVersion()
+    public function getLongVersion(): string
     {
         return '';
     }
