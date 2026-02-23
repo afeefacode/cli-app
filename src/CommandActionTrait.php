@@ -195,6 +195,26 @@ trait CommandActionTrait
         });
 
         if (!$process->isSuccessful()) {
+            $exitCode = $process->getExitCode();
+            $commandLine = is_string($command) ? $command : implode(' ', $command);
+
+            if ($exitCode === 255 && (str_contains($commandLine, 'ssh') || str_contains($commandLine, 'rsync'))) {
+                $output = $process->getOutput() . "\n" . $process->getErrorOutput();
+
+                $hint = "SSH-Verbindung fehlgeschlagen (Exit Code 255)";
+                if (str_contains($output, 'Permission denied')) {
+                    $hint .= "\nUrsache: Falscher oder fehlender SSH-Key";
+                } elseif (str_contains($output, 'Host key verification failed')) {
+                    $hint .= "\nUrsache: Host nicht in known_hosts";
+                } elseif (str_contains($output, 'Connection refused')) {
+                    $hint .= "\nUrsache: Verbindung abgelehnt (falscher Port oder SSH nicht erreichbar)";
+                } elseif (str_contains($output, 'Connection timed out') || str_contains($output, 'No route to host')) {
+                    $hint .= "\nUrsache: Host nicht erreichbar (Netzwerk/Firewall)";
+                }
+
+                $this->printCaution($hint);
+            }
+
             throw new ProcessFailedException($process);
         }
 
