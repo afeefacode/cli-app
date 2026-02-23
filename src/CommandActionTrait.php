@@ -202,7 +202,7 @@ trait CommandActionTrait
                 $output = $process->getOutput() . "\n" . $process->getErrorOutput();
 
                 $hint = "SSH-Verbindung fehlgeschlagen (Exit Code 255)";
-                if (str_contains($output, 'Permission denied')) {
+                if (str_contains($output, 'Permission denied') || str_contains($output, 'authentication failure')) {
                     $hint .= "\nUrsache: Falscher oder fehlender SSH-Key";
                 } elseif (str_contains($output, 'Host key verification failed')) {
                     $hint .= "\nUrsache: Host nicht in known_hosts";
