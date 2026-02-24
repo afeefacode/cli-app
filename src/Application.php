@@ -8,6 +8,7 @@ use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
 use Wujunze\Colors;
 
 class Application extends SymfonyApplication
@@ -79,6 +80,13 @@ class Application extends SymfonyApplication
         echo $colors->getColoredString(' * ', 'light_gray');
         echo $colors->getColoredString($this->getName(), 'brown');
         echo "\n";
+
+        $HeaderAction = $this->applicationDefinition->getHeaderAction();
+        if ($HeaderAction) {
+            $io = new SymfonyStyle(new ArgvInput(), new ConsoleOutput());
+            $action = new $HeaderAction($io, Action::TITLE_HIDDEN);
+            $action->run();
+        }
 
         $infos = $this->applicationDefinition->getInfos();
 

@@ -14,6 +14,13 @@ class ApplicationDefinition extends GroupDefinition
     protected $infos = [];
 
     /**
+     * Action to run in CLI header
+     *
+     * @var string|null
+     */
+    protected $HeaderAction;
+
+    /**
      * Command to run before any command of this app
      *
      * @var string
@@ -64,6 +71,23 @@ class ApplicationDefinition extends GroupDefinition
     public function getBeforeCommand(): ?string
     {
         return $this->BeforeCommand;
+    }
+
+    /**
+     * Set an action to run in CLI header
+     */
+    public function headerAction(string $HeaderAction): ApplicationDefinition
+    {
+        $this->HeaderAction = $HeaderAction;
+        return $this;
+    }
+
+    /**
+     * Return the header action
+     */
+    public function getHeaderAction(): ?string
+    {
+        return $this->HeaderAction;
     }
 
     /**
