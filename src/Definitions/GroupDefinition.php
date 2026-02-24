@@ -158,7 +158,7 @@ class GroupDefinition extends CommandDefinition
             $command = null;
 
             if ($isGroup) {
-                $command = new CommandGroup($app, null, $definition);
+                $command = new CommandGroup($app, $definition);
             } else { // Command
                 $Command = $definition->Command;
                 $command = new $Command($app);

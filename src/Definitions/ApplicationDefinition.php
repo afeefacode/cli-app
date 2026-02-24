@@ -114,7 +114,7 @@ class ApplicationDefinition extends GroupDefinition
 
         $commands = $this->definitionsToCommands($app);
 
-        $indexCommand = new CommandGroup($app, 'index', $this); // i am the definition by myself
+        $indexCommand = new CommandGroup($app, $this, 'index'); // i am the definition by myself
         $indexCommand->setDescription('Select a command');
         $app->add($indexCommand);
 

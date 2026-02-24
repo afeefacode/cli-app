@@ -8,7 +8,7 @@ use Symfony\Component\Console\Command\Command as SymfonyCommand;
 
 class CommandGroup extends Command
 {
-    public function __construct(Application $application, ?string $name = null, GroupDefinition $definition)
+    public function __construct(Application $application, GroupDefinition $definition, ?string $name = null)
     {
         $this->commandDefinition = $definition;
 
